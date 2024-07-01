@@ -1,7 +1,18 @@
 # Table of contents
 
-* [Page 1](README.md)
+* [Welcome](README.md)
 
-## Group 1
+## Getting Started
 
-* [Page 2](group-1/page-2.md)
+* [VEX V5 PROS](getting-started/vex-v5-pros.md)
+* [FRC WPILib](getting-started/frc-wpilib.md)
+
+## VEX V5 Robots
+
+* [Speedbot](vex-v5-robots/speedbot.md)
+* [Clawbot](vex-v5-robots/clawbot.md)
+
+## FRC Starter Robots
+
+* [Romi Robots](frc-starter-robots/romi-robots.md)
+* [XRP Robots](frc-starter-robots/xrp-robots.md)
