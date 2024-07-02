@@ -10,7 +10,7 @@ Note that using Arcade Drive as a control scheme takes only slight modification 
 
 You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [Simple XRP Program Project Setup](../xrp-project-setup.md), and choose Timed Skeleton (Advanced) as your project template.
 
-To understand the structure of a timed robot, be sure to read [Timed Robots](../../../frc-programming-paradigms/timed-robots.md).
+To understand the structure of a timed robot, be sure to read [Timed Robots](../../../frc-programming-theory/timed-robots.md).
 
 In the left-hand file explorer sidebar of VSCode, open up the file named `Robot.java` in the `java/frc/robot` folder located within the `src/main` folder.
 
@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
 {% endtab %}
 {% endtabs %}
 
-### Importing Necessary Classes
+### Importing Classes
 
 The XRP robot uses a special `XRPMotor` class to interface with the motors on the XRP.  In order to use it in your program, you must have first downloaded the XRP 3rd Party Vendor Library, and include the following import statement at the top of your program, right underneath the Timed Robot import/include statement:
 
@@ -202,7 +202,7 @@ public void teleopPeriodic() {
 
 ### Tank Drive Sample Code
 
-By now, your code might look like this.  You can now use WPILib to simulate your code on the robot.
+By now, your code might look like this.  You can now use WPILib to simulate your code on the robot.  See [How to Simulate Code](../../../frc-programming-theory/how-to-simulate-code.md).
 
 {% tabs %}
 {% tab title="Java" %}

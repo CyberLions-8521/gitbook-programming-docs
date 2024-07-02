@@ -10,7 +10,7 @@ Note that using Arcade Drive as a control scheme takes only slight modification 
 
 You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [Simple XRP Program Project Setup](../xrp-project-setup.md), and choose Command Robot Skeleton (Advanced) as your project template.
 
-To understand the structure of a command robot, be sure to read [Structure of a Command Robot](../../../frc-programming-paradigms/command-robots/structure-of-a-command-robot.md).  To better organize our code to align with the structure of a command robot, make a folder for your subsystems and for your commands within your project (either within `java/frc/robot` or within `src/main/cpp`).  You can make new folders by right clicking where you want the folders to go within the File Explorer on the left sidebar of VSCode, and selecting "New Folder".
+To understand the structure of a command robot, be sure to read [Structure of a Command Robot](../../../frc-programming-theory/command-robots/structure-of-a-command-robot.md).  To better organize our code to align with the structure of a command robot, make a folder for your subsystems and for your commands within your project (either within `java/frc/robot` or within `src/main/cpp`).  You can make new folders by right clicking where you want the folders to go within the File Explorer on the left sidebar of VSCode, and selecting "New Folder".
 
 <figure><img src="../../../.gitbook/assets/wpilib-create-new-folder.PNG" alt=""><figcaption><p>Creating a new folder within a WPILib Project</p></figcaption></figure>
 
@@ -175,7 +175,7 @@ public class TankDriveCommand extends Command {
 {% endtab %}
 {% endtabs %}
 
-In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, XBox Controller, or something else).  (Alternatively, one can also give the class two functions as attributes.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-paradigms/command-robots/wpilib-command-based-tank-arcade-drive.md).)  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
+In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, XBox Controller, or something else).  (Alternatively, one can also give the class two functions as attributes.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).)  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
 
 {% tabs %}
 {% tab title="Java" %}
@@ -295,7 +295,7 @@ public class RobotContainer {
 {% endtab %}
 {% endtabs %}
 
-Within the `configureBindings()` method, we will set the default command of the `Drivetrain` subsystem to be our `TankDriveCommand`.  Congratulations!  You can now simulate your code to check that it is working properly.
+Within the `configureBindings()` method, we will set the default command of the `Drivetrain` subsystem to be our `TankDriveCommand`.  Congratulations!  You can now simulate your code to check that it is working properly.  See [How to Simulate Code](../../../frc-programming-theory/how-to-simulate-code.md).
 
 {% tabs %}
 {% tab title="Java" %}
