@@ -53,7 +53,7 @@ Within the class, create two `XRPMotor` objects, one for each of the left and ri
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;
+import edu.wpi.first.wpilibj.xrp.XRPMotor;  // import XRPMotor class
 
 public class Drivetrain extends SubsystemBase {
   // Attributes
@@ -107,11 +107,13 @@ public class Drivetrain extends SubsystemBase {
     m_rightMotor.setInverted(true);
   }
   
+  /******** NEW CODE HERE ********/
   // Tank Drive method
   public void tankDrive(double leftSpeed, double rightSpeed) {
     m_leftMotor.set(leftSpeed);
     m_rightMotor.set(rightSpeed);
   }
+  /*******************************/
 
   @Override
   public void periodic() {
@@ -150,17 +152,19 @@ We want the class to have a reference to a Drivetrain, and we want to modify the
 // TankDriveCommand.java
 package frc.robot.commands;
 
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Drivetrain;  // import Drivetrain class
 
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class TankDriveCommand extends Command {
-  private final Drivetrain m_drivetrain;
+  private final Drivetrain m_drivetrain;  // create Drivetrain attribute
   
-  // Note: I am using the "i" for input naming convention here
+  /** Modify constructor to take a Drivetrain as parameter
+  * Note: I am using the "i" for input naming convention here
+  **/
   public TankDriveCommand(Drivetrain iDrivetrain) {
-    m_drivetrain = iDrivetrain;
-    addRequirements(m_drivetrain);
+    m_drivetrain = iDrivetrain;    // set this drivetrain to input drivetrain
+    addRequirements(m_drivetrain); // add the drivetrain as the subsystem req.
   }
 
   /** Other methods not shown **/
@@ -187,17 +191,19 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.Drivetrain;
 
+// Import the CommandXboxController
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 
 public class TankDriveCommand extends Command {
   private final Drivetrain m_drivetrain;
-  private final CommandXboxController m_controller;
+  private final CommandXboxController m_controller;  // create controller
   
+  // Modify constructor to take controller as parameter
   public TankDriveCommand(Drivetrain iDrivetrain,
                           CommandXboxController iController) {
     m_drivetrain = iDrivetrain;
-    m_controller = iController;
+    m_controller = iController;  // set this controller to input controller
     addRequirements(iDrivetrain);
   }
 
@@ -215,7 +221,7 @@ public class TankDriveCommand extends Command {
 {% endtab %}
 {% endtabs %}
 
-We can now finish our command by defining what the command does in its `execute()` method.  For this command, all we want it to do is run each supplier to get the corresponding speeds, and pass them to the Drivetrain object's `tankDrive()` method.
+We can now finish our command by defining what the command does in its `execute()` method.  For this command, all we want it to do is to get the joystick values from the controller, and pass them as the speeds to the Drivetrain object's `tankDrive()` method.  Remember to negate the joystick y-values.
 
 {% tabs %}
 {% tab title="Java" %}
@@ -239,12 +245,16 @@ public class TankDriveCommand extends Command {
     addRequirements(iDrivetrain);
   }
   
+  /** NEW CODE HERE
+  * Modify the execute() method
+  **/
   @Override
   public void execute() {
     double leftSpeed = -m_controller.getLeftY();
     double rightSpeed = -m_controller.getRightY();
     m_drivetrain.tankDrive(leftSpeed, rightSpeed)
   }
+  
   /** Other methods not shown **/
 }
 ```
