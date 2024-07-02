@@ -46,7 +46,11 @@ import edu.wpi.first.wpilibj.xrp.XRPMotor;
 {% endtab %}
 {% endtabs %}
 
-Within the class, create two `XRPMotor` objects, one for each of the left and right motors.  Within the `Drivetrain` constructor, initialize the left motor to port 0, the right motor to port 1, and set the inverted status of the right motor to `true` (as stated in the [WPILib XRP documentation](https://docs.wpilib.org/en/stable/docs/xrp-robot/getting-to-know-xrp.html)).
+Within the class, create two `XRPMotor` objects, one for each of the left and right motors.  Within the `Drivetrain` constructor, initialize the left motor to port 0, the right motor to port 1, and set the inverted status of the right motor to `true` (as stated in the [WPILib XRP documentation](https://docs.wpilib.org/en/stable/docs/xrp-robot/getting-to-know-xrp.html)) using the `setInverted()` method of the `XRPMotor` class.
+
+{% hint style="info" %}
+Source code for the `XRPMotor` class can be found here ([Java](https://github.com/wpilibsuite/allwpilib/blob/main/xrpVendordep/src/main/java/edu/wpi/first/wpilibj/xrp/XRPMotor.java) / [C++](https://github.com/wpilibsuite/allwpilib/blob/main/xrpVendordep/src/main/native/cpp/xrp/XRPMotor.cpp)).
+{% endhint %}
 
 {% tabs %}
 {% tab title="Java" %}
@@ -142,7 +146,9 @@ import frc.robot.subsystems.Drivetrain;
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
-
+```cpp
+#include <frc2/command/button/CommandXboxController.h>
+```
 {% endtab %}
 {% endtabs %}
 
@@ -186,7 +192,7 @@ public class TankDriveCommand extends Command {
 In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, X Box Controller, or something else).  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
 
 {% hint style="info" %}
-Alternatively, one can also give the class two functions as attributes.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).
+Alternatively, you can also give the class two functions as attributes.  You could even not make a `TankDriveCommand` class at all, and just set the default command directly within `RobotContainer` using lambda functions.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).
 {% endhint %}
 
 {% tabs %}
@@ -266,6 +272,10 @@ public class TankDriveCommand extends Command {
 ```
 {% endtab %}
 {% endtabs %}
+
+{% hint style="info" %}
+Documentation for the `CommandXboxController` class can be found here ([Java](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/button/CommandXboxController.html) / [C++](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc2\_1\_1\_command\_xbox\_controller.html))
+{% endhint %}
 
 ### Robot Container
 
