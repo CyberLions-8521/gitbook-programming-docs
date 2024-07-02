@@ -1,5 +1,7 @@
 # XRP Command Robot Drive Program
 
+## Tank Drive
+
 ### Introduction
 
 This page will walk you through programming the XRP as a Command Robot using the Tank Drive operator control scheme.  This means that the left joystick of a gamepad will control the left wheel on the robot, and the right joystick of the gamepad will control the right wheel on the robot.
@@ -181,7 +183,11 @@ public class TankDriveCommand extends Command {
 {% endtab %}
 {% endtabs %}
 
-In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, X Box Controller, or something else).  (Alternatively, one can also give the class two functions as attributes.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).)  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
+In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, X Box Controller, or something else).  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
+
+{% hint style="info" %}
+Alternatively, one can also give the class two functions as attributes.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).
+{% endhint %}
 
 {% tabs %}
 {% tab title="Java" %}
@@ -307,7 +313,7 @@ public class RobotContainer {
 {% endtab %}
 {% endtabs %}
 
-Within the `configureBindings()` method, we will set the default command of the `Drivetrain` subsystem to be our `TankDriveCommand`.  Congratulations!  You can now simulate your code to check that it is working properly.  See [How to Simulate Code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
+Within the `configureBindings()` method, we will set the default command of the `Drivetrain` subsystem to be our `TankDriveCommand`.  Congratulations!  You can now simulate your code to check that it is working properly.
 
 {% tabs %}
 {% tab title="Java" %}
@@ -325,7 +331,13 @@ private void configureBindings() {
 {% endtab %}
 {% endtabs %}
 
-### Arcade Drive
+{% hint style="info" %}
+See [How to Simulate Code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
+{% endhint %}
+
+***
+
+## Arcade Drive
 
 To program your robot using Arcade Drive, simply modify or add the code in the following files as shown below.
 

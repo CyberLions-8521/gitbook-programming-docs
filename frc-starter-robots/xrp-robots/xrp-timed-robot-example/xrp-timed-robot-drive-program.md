@@ -1,5 +1,7 @@
 # XRP Timed Robot Drive Program
 
+## Tank Drive
+
 ### Introduction
 
 This page will walk you through programming the XRP as a Timed Robot using the Tank Drive operator control scheme.  This means that the left joystick of a gamepad will control the left wheel on the robot, and the right joystick of the gamepad will control the right wheel on the robot.
@@ -160,6 +162,10 @@ public class Robot extends TimedRobot {
 
 We want to invert the right motor so that when we apply positive output, the motor will still drive in the direction we consider to be forward.  Inver the right motor within the `teleopInit()` method, since we only need to invert the motor once, and at the beginning before our loop code starts.
 
+{% hint style="info" %}
+Alternatively, you can invert the motor within the `robotInit()` method, since we only need to invert the motor once, and `robotInit()` will run _exactly_ once when the robot turns on; the `teleopInit()` method does occur once, but it occurs once for every time that the robot switches to teleop mode.
+{% endhint %}
+
 {% tabs %}
 {% tab title="Java" %}
 ```java
@@ -177,7 +183,11 @@ public void teleopInit() {
 
 ### TeleopPeriodic
 
-In tank drive, the left joystick will drive the left wheels, and the right joystick will drive the right wheels.  Within our periodic (or looping) code, we want to get the values of the joysticks from the controller, and use those values as the speeds to set our motors to.  Note that we need a minus sign when getting the Y-joystick values since pushing up on a joystick returns a negative value.  The minus sign will convert the negative values to positive ones when pushing the joystick up (and vice versa when pulling the joystick down; see [WPILib Coordinate System Documentation](https://docs.wpilib.org/en/stable/docs/software/basic-programming/coordinate-system.html) for additional explanation).
+In tank drive, the left joystick will drive the left wheels, and the right joystick will drive the right wheels.  Within our periodic (or looping) code, we want to get the values of the joysticks from the controller, and use those values as the speeds to set our motors to.  Note that we need a minus sign when getting the Y-joystick values since pushing up on a joystick returns a negative value.  The minus sign will convert the negative values to positive ones when pushing the joystick up (and vice versa when pulling the joystick down).
+
+{% hint style="info" %}
+See [WPILib Coordinate System Documentation](https://docs.wpilib.org/en/stable/docs/software/basic-programming/coordinate-system.html) for additional explanation about FRC coordinate system conventions.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Java" %}
@@ -202,7 +212,7 @@ public void teleopPeriodic() {
 
 ### Tank Drive Sample Code
 
-By now, your code might look like this.  You can now use WPILib to simulate your code on the robot.  See [How to Simulate Code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
+By now, your code might look like this.  You can now use WPILib to simulate your code on the robot.
 
 {% tabs %}
 {% tab title="Java" %}
@@ -248,7 +258,13 @@ public class Robot extends TimedRobot {
 {% endtab %}
 {% endtabs %}
 
-### Arcade Drive
+{% hint style="info" %}
+See [How to Simulate Code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
+{% endhint %}
+
+***
+
+## Arcade Drive
 
 This sample code shows how you could modify the program to drive the robot using Arcade Drive.  In this example, the forwards/backwards motion is controlled by moving the left joystick up and down, and the turning movement is controlled by moving the left joystick left and right.
 

@@ -1,4 +1,4 @@
-# Structure of a Timed Robot
+# Timed Robots
 
 The timed robot code works similarly to an Arduino, where you have a function that runs one time to initialize or set up your robot, and then you have a function that runs repeatedly (continuously, and forever).
 
@@ -31,7 +31,7 @@ Robots in FRC have 4 distinct modes that they can be running in:
 * **Autonomous Mode** - The robot runs purely off of program code, with no input from a driver.
 * **Teleoperated Mode** - The robot runs based off of driver input (usually from a gamepad or other controller).
 
-Notice that each mode of the robot has a corresponding setup function (called "init" for "initialize") as well as a corresponding loop function (called "periodic").  When a robot switches modes, it first runs the corresponding `init` method for that mode exactly one time, followed by the `periodic` method for that mode (which runs forever and is called every 20 milliseconds by default).
+The code for a Timed Robot is located in the file named `Robot` (with corresponding language extension; `.java`, `.cpp`, `.py`).  Each mode of the robot has a corresponding setup function (called "init" for "initialize") as well as a corresponding loop function (called "periodic").  When a robot switches modes, it first runs the corresponding `init` method for that mode exactly one time, followed by the `periodic` method for that mode (which runs forever and is called every 20 milliseconds by default).
 
 Typically, any setup code that initializes components of the robot is placed within the `init` method (such as rezeroing encoders, gyroscope, etc.), and any persistent robot behaviors are placed within the `periodic` method (e.g., responding to joysticks, button presses, or autonomous code).
 
