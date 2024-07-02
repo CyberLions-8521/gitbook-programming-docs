@@ -144,7 +144,7 @@ import frc.robot.subsystems.Drivetrain;
 {% endtab %}
 {% endtabs %}
 
-We want the class to have a reference to a Drivetrain, and we want to modify the constructor to take a Drivetrain object as parameter.  We must use the `addRequirements()` method of the `Command` class (which `TankDriveCommand` inherits from) to add our Drivetrain object as the subsystem that this command controls.
+We want the class to have a `Drivetrain` object as an attribute, and we want to modify the constructor to take a `Drivetrain` object as parameter.  We must also tell the command which subsystem it is responsible for by using the built-in `addRequirements()` method (which `TankDriveCommand` inherits from the `Command` class).  We call the `addRequirements()` method in the class constructor so that the command knows which subsystem it is responsible for as soon as the command is created.
 
 {% tabs %}
 {% tab title="Java" %}
