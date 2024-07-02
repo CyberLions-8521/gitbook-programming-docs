@@ -1,15 +1,8 @@
 ---
-description: Some description
+description: >-
+  CyberLions Programming Documentation.  Powered by GitBook
+  (https://www.gitbook.com/).
 ---
 
-# Page 1
+# Welcome
 
-Some content.
-
-```java
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-    }
-}
-```
