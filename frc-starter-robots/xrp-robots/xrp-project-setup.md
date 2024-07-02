@@ -2,7 +2,7 @@
 
 ### Creating a New Project
 
-See [WPILib: Create New Projects](../../frc-programming-theory/wpilib-vscode-how-to/wpilib-create-new-projects.md).
+See [WPILib: Create New Projects](../../getting-started/wpilib-vscode-how-to/wpilib-create-new-projects.md).
 
 ### Downloading XRP Vendor Library
 

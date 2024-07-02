@@ -4,13 +4,10 @@
 
 ## Getting Started
 
-* [VEX V5 PROS](getting-started/vex-v5-pros.md)
 * [FRC WPILib](getting-started/frc-wpilib.md)
-
-## VEX V5 Robots
-
-* [Speedbot](vex-v5-robots/speedbot.md)
-* [Clawbot](vex-v5-robots/clawbot.md)
+* [WPILib VSCode: How to](getting-started/wpilib-vscode-how-to/README.md)
+  * [WPILib: Create New Projects](getting-started/wpilib-vscode-how-to/wpilib-create-new-projects.md)
+  * [WPILib: Simulate Code](getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md)
 
 ## FRC Programming Theory
 
@@ -21,9 +18,6 @@
   * [Commands](frc-programming-theory/command-robots/commands.md)
   * [Binding Commands to Triggers](frc-programming-theory/command-robots/binding-commands-to-triggers.md)
   * [WPILib Command Based Tank-Arcade Drive](frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md)
-* [WPILib VSCode: How to](frc-programming-theory/wpilib-vscode-how-to/README.md)
-  * [WPILib: Create New Projects](frc-programming-theory/wpilib-vscode-how-to/wpilib-create-new-projects.md)
-  * [WPILib: Simulate Code](frc-programming-theory/wpilib-vscode-how-to/wpilib-simulate-code.md)
 
 ## FRC Starter Robots
 

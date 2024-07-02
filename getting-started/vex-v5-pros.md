@@ -1,2 +1,0 @@
-# VEX V5 PROS
-
