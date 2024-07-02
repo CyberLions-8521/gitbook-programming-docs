@@ -307,7 +307,7 @@ public class RobotContainer {
 {% endtab %}
 {% endtabs %}
 
-Within the `configureBindings()` method, we will set the default command of the `Drivetrain` subsystem to be our `TankDriveCommand`.  Congratulations!  You can now simulate your code to check that it is working properly.  See [How to Simulate Code](../../../frc-programming-theory/how-to-simulate-code.md).
+Within the `configureBindings()` method, we will set the default command of the `Drivetrain` subsystem to be our `TankDriveCommand`.  Congratulations!  You can now simulate your code to check that it is working properly.  See [How to Simulate Code](../../../frc-programming-theory/wpilib-vscode-how-to/wpilib-simulate-code.md).
 
 {% tabs %}
 {% tab title="Java" %}

@@ -21,7 +21,9 @@
   * [Commands](frc-programming-theory/command-robots/commands.md)
   * [Binding Commands to Triggers](frc-programming-theory/command-robots/binding-commands-to-triggers.md)
   * [WPILib Command Based Tank-Arcade Drive](frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md)
-* [How to Simulate Code](frc-programming-theory/how-to-simulate-code.md)
+* [WPILib VSCode: How to](frc-programming-theory/wpilib-vscode-how-to/README.md)
+  * [WPILib: Create New Projects](frc-programming-theory/wpilib-vscode-how-to/wpilib-create-new-projects.md)
+  * [WPILib: Simulate Code](frc-programming-theory/wpilib-vscode-how-to/wpilib-simulate-code.md)
 
 ## FRC Starter Robots
 

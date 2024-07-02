@@ -202,7 +202,7 @@ public void teleopPeriodic() {
 
 ### Tank Drive Sample Code
 
-By now, your code might look like this.  You can now use WPILib to simulate your code on the robot.  See [How to Simulate Code](../../../frc-programming-theory/how-to-simulate-code.md).
+By now, your code might look like this.  You can now use WPILib to simulate your code on the robot.  See [How to Simulate Code](../../../frc-programming-theory/wpilib-vscode-how-to/wpilib-simulate-code.md).
 
 {% tabs %}
 {% tab title="Java" %}
