@@ -1,20 +1,24 @@
-# XRP Timed Robot Tank Drive Program
+# XRP Timed Robot Drive Program
 
-You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [Simple XRP Program Project Setup](simple-xrp-program-project-setup.md).
+### Introduction
 
-To understand the structure of a timed robot, be sure to read [Structure of a Timed Robot](../structure-of-a-timed-robot.md).
+This page will walk you through programming the XRP as a Timed Robot using the Tank Drive operator control scheme.  This means that the left joystick of a gamepad will control the left wheel on the robot, and the right joystick of the gamepad will control the right wheel on the robot.
+
+Note that using Arcade Drive as a control scheme takes only slight modification to the code.  Sample code for Arcade Drive is included at the bottom of this page.
+
+### Code Setup
+
+You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [Simple XRP Program Project Setup](../xrp-project-setup.md), and choose Timed Skeleton (Advanced) as your project template.
+
+To understand the structure of a timed robot, be sure to read [Timed Robots](../../../frc-programming-paradigms/timed-robots.md).
 
 In the left-hand file explorer sidebar of VSCode, open up the file named `Robot.java` in the `java/frc/robot` folder located within the `src/main` folder.
 
-For this project, we will focus mainly on the Teleoperated mode, and so all other modes can be ignored, commented, or deleted.
+For this project, we will focus mainly on the Teleoperated mode, and so all other modes can be ignored, commented out, or deleted.
 
 {% tabs %}
 {% tab title="Java" %}
 ```java
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -81,10 +85,6 @@ Here is a sample of what your code might look like at this point.
 {% tabs %}
 {% tab title="Java" %}
 ```java
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -128,10 +128,7 @@ Create two XRP Motor objects, one to represent the left motor, and one to repres
 
 {% tabs %}
 {% tab title="Java" %}
-<pre class="language-java"><code class="lang-java"><strong>// Copyright (c) FIRST and other WPILib contributors.
-</strong>// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
+```java
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -151,7 +148,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {}
 }
-</code></pre>
+```
 {% endtab %}
 
 {% tab title="C++ (Source)" %}
@@ -203,17 +200,13 @@ public void teleopPeriodic() {
 {% endtab %}
 {% endtabs %}
 
-### Sample Code
+### Tank Drive Sample Code
 
 By now, your code might look like this.  You can now use WPILib to simulate your code on the robot.
 
 {% tabs %}
 {% tab title="Java" %}
 ```java
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -241,6 +234,54 @@ public class Robot extends TimedRobot {
     // Setting the motor speeds using our joystick values
     m_leftMotor.set(leftSpeed);
     m_rightMotor.set(rightSpeed);
+  }
+}
+```
+{% endtab %}
+
+{% tab title="C++ (Header)" %}
+
+{% endtab %}
+
+{% tab title="C++ (Source)" %}
+
+{% endtab %}
+{% endtabs %}
+
+### Arcade Drive
+
+This sample code shows how you could modify the program to drive the robot using Arcade Drive.  In this example, the forwards/backwards motion is controlled by moving the left joystick up and down, and the turning movement is controlled by moving the left joystick left and right.
+
+{% tabs %}
+{% tab title="Java" %}
+```java
+package frc.robot;
+
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
+import edu.wpi.first.wpilibj.XboxController; // XboxController
+
+public class Robot extends TimedRobot {
+  
+  // Creating our controller and motor objects
+  XboxController m_controller = new XboxController(0);
+  XRPMotor m_leftMotor = new XRPMotor(0);
+  XRPMotor m_rightMotor = new XRPMotor(1);
+
+  @Override
+  public void teleopInit() {
+    m_rightMotor.setInverted(true);
+  }
+
+  @Override
+  public void teleopPeriodic() {
+    // Getting the values from the joysticks    
+    double forward = -m_controller.getLeftY();
+    double turn = m_controller.getLeftX();
+    
+    // Setting the motor speeds using our joystick values
+    m_leftMotor.set(forward + turn);
+    m_rightMotor.set(forward - turn);
   }
 }
 ```
