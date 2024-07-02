@@ -10,19 +10,21 @@ Note that using Arcade Drive as a control scheme takes only slight modification 
 
 You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [Simple XRP Program Project Setup](../xrp-project-setup.md), and choose Command Robot Skeleton (Advanced) as your project template.
 
-To understand the structure of a command robot, be sure to read [Structure of a Command Robot](../../../frc-programming-theory/command-robots/structure-of-a-command-robot.md).  To better organize our code to align with the structure of a command robot, make a folder for your subsystems and for your commands within your project (either within `java/frc/robot` or within `src/main/cpp`).  You can make new folders by right clicking where you want the folders to go within the File Explorer on the left sidebar of VSCode, and selecting "New Folder".
+To understand the structure of a command robot, be sure to read [Structure of a Command Robot](../../../frc-programming-theory/command-robots/structure-of-a-command-robot.md).  To better organize our code to align with the structure of a command robot, make a folder for your subsystems and for your commands within your project (either within `java/frc/robot` or within `src/main/cpp`).  Name the folders "subsystems" and "commands".
+
+You can make new folders by right clicking where you want the folders to go within the File Explorer on the left sidebar of VSCode, and selecting "New Folder".
 
 <figure><img src="../../../.gitbook/assets/wpilib-create-new-folder.PNG" alt=""><figcaption><p>Creating a new folder within a WPILib Project</p></figcaption></figure>
 
-We are going to represent our drivebase (or drivetrain) as a subsystem in our program.  Right click within your subsystems folder, and select "Create a new class/command".  Select "Subsystem" from the dropdown list that appears, and name it "Drivebase" (case-sensitive).
+We are going to represent our drivebase (or drivetrain) as a subsystem in our program.  Right click within your subsystems folder, and select "Create a new class/command".  Select "Subsystem" from the dropdown list that appears, and name it `Drivetrain` (case-sensitive).
 
-We will preemptively make a tank drive command for our program as well.  Create a new class/command in your commands folder, and select "Command" from the dropdown list.  Name it "TankDriveCommand".
+We will preemptively make a tank drive command for our program as well.  Create a new class/command in your commands folder, and select "Command" from the dropdown list.  Name it `TankDriveCommand`.
 
 <figure><img src="../../../.gitbook/assets/wpilib-create-new-class-command.PNG" alt=""><figcaption></figcaption></figure>
 
 ### The Drivetrain Class
 
-We will begin by creating our Drivetrain class.  All classes have attributes/fields (i.e., what the class _has_) as well as methods/behaviors (i.e., what the class _can do_).  In this case, our Drivetrain should _have_ two motors - one each for the left and right motors - and the behavior or action that it is _able to do_ is that it can drive using Tank Drive
+We will begin by creating our `Drivetrain` class.  All classes have attributes/fields (i.e., what the class _has_) as well as methods/behaviors (i.e., what the class _can do_).  In this case, our `Drivetrain` should _have_ two motors - one each for the left and right motors - and the behavior or action that it is _able to do_ is that it can drive using Tank Drive
 
 {% @lucid/lucid-component url="https://lucid.app/lucidchart/d993916f-f833-429c-bead-09efd4c0ba77/edit?invitationId=inv_8a541e58-44ba-47f9-9c33-add839c0605b&viewport_loc=2371,772,947,516,HWEp-vi-RSFO" %}
 
@@ -42,7 +44,7 @@ import edu.wpi.first.wpilibj.xrp.XRPMotor;
 {% endtab %}
 {% endtabs %}
 
-Within the class, create two XRP Motor objects, one for each of the left and right motors.  Within the Drivetrain constructor, initialize the left motor to port 0, the right motor to port 1, and set the inverted status of the right motor to `true` (as stated in the [WPILib XRP documentation](https://docs.wpilib.org/en/stable/docs/xrp-robot/getting-to-know-xrp.html)).
+Within the class, create two `XRPMotor` objects, one for each of the left and right motors.  Within the `Drivetrain` constructor, initialize the left motor to port 0, the right motor to port 1, and set the inverted status of the right motor to `true` (as stated in the [WPILib XRP documentation](https://docs.wpilib.org/en/stable/docs/xrp-robot/getting-to-know-xrp.html)).
 
 {% tabs %}
 {% tab title="Java" %}
@@ -82,7 +84,7 @@ public class Drivetrain extends SubsystemBase {
 {% endtab %}
 {% endtabs %}
 
-We want our Drivetrain to be able to drive using Tank Drive.  We will make a method (function/procedure) that handles this for us.  The method will take two doubles as parameters: one for the left motor speed and one for the right motor speed, and set the speed values of the motors accordingly.
+We want our `Drivetrain` to be able to drive using Tank Drive.  We will make a method (function/procedure) that handles this for us.  The method will take two doubles as parameters: one for the left motor speed and one for the right motor speed, and set the speed values of the motors accordingly.
 
 {% tabs %}
 {% tab title="Java" %}
@@ -126,7 +128,7 @@ public class Drivetrain extends SubsystemBase {
 
 ### Tank Drive Command
 
-We will now create the Tank Drive Command.  All commands require a subsystem.  In this case, the Tank Drive Command will require the Drivetrain subsystem.  Import the Drivetrain class into your TankDriveCommand file.
+We will now create the Tank Drive Command.  All commands require a subsystem.  In this case, the Tank Drive Command will require the `Drivetrain` subsystem.  Import the `Drivetrain` class into your `TankDriveCommand` file.
 
 {% tabs %}
 {% tab title="Java" %}
@@ -175,7 +177,7 @@ public class TankDriveCommand extends Command {
 {% endtab %}
 {% endtabs %}
 
-In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, XBox Controller, or something else).  (Alternatively, one can also give the class two functions as attributes.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).)  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
+In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, X Box Controller, or something else).  (Alternatively, one can also give the class two functions as attributes.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).)  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
 
 {% tabs %}
 {% tab title="Java" %}
