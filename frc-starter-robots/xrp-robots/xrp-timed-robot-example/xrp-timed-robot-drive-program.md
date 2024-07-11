@@ -293,11 +293,11 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     // Getting the values from the joysticks    
     double forward = -m_controller.getLeftY();
-    double turn = m_controller.getLeftX();
+    double turn = -m_controller.getLeftX();
     
     // Setting the motor speeds using our joystick values
-    m_leftMotor.set(forward + turn);
-    m_rightMotor.set(forward - turn);
+    m_leftMotor.set(forward - turn);
+    m_rightMotor.set(forward + turn);
   }
 }
 ```

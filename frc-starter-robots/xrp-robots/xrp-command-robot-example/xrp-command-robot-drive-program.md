@@ -361,8 +361,8 @@ To program your robot using Arcade Drive, simply modify or add the code in the f
 * create a new function for Arcade Drive
 **/
 public void arcadeDrive(double fwd, double turn) {
-    double leftSpeed = fwd + turn;
-    double rightSpeed = fwd - turn;
+    double leftSpeed = fwd - turn;
+    double rightSpeed = fwd + turn;
     m_leftMotor.set(leftSpeed);
     m_rightMotor.set(rightSpeed);
 }
@@ -372,7 +372,7 @@ public void arcadeDrive(double fwd, double turn) {
 **/
 public void execute() {
     double fwd = -m_controller.getLeftY();
-    double turn = m_controller.getLeftX();
+    double turn = -m_controller.getLeftX();
     m_drivetrain.arcadeDrive(fwd, turn);
 }
 
