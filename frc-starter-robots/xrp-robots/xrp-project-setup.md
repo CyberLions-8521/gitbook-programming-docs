@@ -6,13 +6,7 @@ See [WPILib: Create New Projects](../../getting-started/wpilib-vscode-how-to/wpi
 
 ### Downloading XRP Vendor Library
 
-We need to download an additional library specific to the XRP into our project so that our program has access to XRP specific things.  The XRP library needs to be downloaded into your WPILib project as an External 3rd Party Library.  Open up the Command Palette again by either pressing Ctrl+Shift+P (Windows) or by clicking the WPILib "W" icon in the top right hand corner.  Select "Manage Vendor Libraries", and then select "Install new library (online)".
-
-<figure><img src="../../.gitbook/assets/wpilib-install-3rd-party-libs.png" alt=""><figcaption></figcaption></figure>
-
-When prompted for a URL, go to the [WPILib 3rd Party Libraries](https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html) page, scroll down to XRP Library, and copy and paste the XRP Vendordep URL.  Press Enter, and select "Yes" when prompted to build your project again.  Your project is now ready to go.
-
-<figure><img src="../../.gitbook/assets/xrp-lib-copy-vendordep-link.PNG" alt=""><figcaption></figcaption></figure>
+We need to download an additional library specific to the XRP into our project so that our program has access to XRP specific things.  The XRP library needs to be downloaded into your WPILib project as an External 3rd Party Library.  See instructions for that in [WPILib: Download 3rd Party Vendor Libraries](../../getting-started/wpilib-vscode-how-to/wpilib-download-3rd-party-vendor-libraries.md).
 
 ### Simulating XRP Code
 
