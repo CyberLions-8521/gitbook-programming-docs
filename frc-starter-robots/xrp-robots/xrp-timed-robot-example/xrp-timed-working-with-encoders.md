@@ -110,12 +110,12 @@ Note that this section can be skipped if you do not care for the math.  Just upd
 
 We want to set the distance per pulse of the encoder so that whenever we read the distance from the encoder, we get a meaningful answer back (because getting a reading of 687 ticks is hard to make meaning out of, but getting a reading of 8.715 inches traveled _is_ meaningful).  By setting the distance per pulse of each encoder, the encoder will convert pulses to distance for us, so that we do not have to.
 
-To find the distance per pulse, we want to find the distance travelled when the wheel turns once.  This is given by the circumference of the wheel, since when the wheel turns once, it has travelled a length exactly equal to its circumference.
+To find the distance per pulse, we first find the distance travelled when the wheel turns once.  This is given by the circumference of the wheel, since when the wheel turns once, it has travelled a length exactly equal to its circumference.  We then divide this by the number of pulses per revolution, to get a final value in units of distance per pulse.
 
-The mathematical equation to find the distance per pulse is given below.  Notice that the units of revolutions cancels out, and you obtain circumference (which is in units of length) per pulses, which is what we wanted.
+The mathematical equation to find the distance per pulse is given below.  Notice that the units of revolutions cancels out, and you obtain distance (from the circumference which is in units of length) per pulses, which is what we wanted.
 
 $$
-\text{distance per pulse} = \dfrac{\text{circumference}}{1\text{ revolution}}\cdot\dfrac{1\text{ revolution}}{\text{pulses}}
+\text{distance per pulse} = \dfrac{\text{circumference}}{1\text{ revolution}}\cdot\dfrac{1\text{ revolution}}{\text{number of pulses}}
 $$
 
 Update your code so that you have set the distance per pulse for the encoders.
