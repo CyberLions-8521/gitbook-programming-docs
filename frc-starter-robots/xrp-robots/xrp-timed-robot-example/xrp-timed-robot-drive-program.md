@@ -16,7 +16,7 @@ To understand the structure of a timed robot, be sure to read [Timed Robots](../
 
 In the left-hand file explorer sidebar of VSCode, open up the file named `Robot.java` in the `java/frc/robot` folder located within the `src/main` folder.
 
-For this project, we will focus mainly on the Teleoperated mode, and so all other modes can be ignored, commented out, or deleted.
+For this project, we will focus mainly on the Teleoperated mode, and so all other modes can be ignored, or commented out.
 
 {% tabs %}
 {% tab title="Java" %}

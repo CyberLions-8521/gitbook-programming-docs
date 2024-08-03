@@ -28,5 +28,6 @@
   * [XRP Project Setup](frc-starter-robots/xrp-robots/xrp-project-setup.md)
   * [XRP Timed Robot Example](frc-starter-robots/xrp-robots/xrp-timed-robot-example/README.md)
     * [XRP Timed Robot Drive Program](frc-starter-robots/xrp-robots/xrp-timed-robot-example/xrp-timed-robot-drive-program.md)
+    * [XRP Timed: Working with Encoders](frc-starter-robots/xrp-robots/xrp-timed-robot-example/xrp-timed-working-with-encoders.md)
   * [XRP Command Robot Example](frc-starter-robots/xrp-robots/xrp-command-robot-example/README.md)
     * [XRP Command Robot Drive Program](frc-starter-robots/xrp-robots/xrp-command-robot-example/xrp-command-robot-drive-program.md)
