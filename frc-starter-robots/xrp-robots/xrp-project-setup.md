@@ -1,5 +1,13 @@
 # XRP Project Setup
 
+## CyberLions Starter Code
+
+You can clone a repository of starter code with this link here.
+
+[https://github.com/CyberLions-8521/wpilib-starter-v2024.3.2.git](https://github.com/CyberLions-8521/wpilib-starter-v2024.3.2.git)
+
+## Manually Making an XRP Project
+
 ### Creating a New Project
 
 See [WPILib: Create New Projects](../../getting-started/wpilib-vscode-how-to/wpilib-create-new-projects.md).
