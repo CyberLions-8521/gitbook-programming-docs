@@ -12,7 +12,7 @@ Note that using Arcade Drive as a control scheme takes only slight modification 
 
 You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [Simple XRP Program Project Setup](../xrp-project-setup.md), and choose Timed Skeleton (Advanced) as your project template.
 
-To understand the structure of a timed robot, be sure to read [Timed Robots](../../../frc-programming-theory/timed-robots.md).
+To understand the structure of a timed robot, be sure to read [Timed Robots](../../../../frc-programming-theory/timed-robots.md).
 
 In the left-hand file explorer sidebar of VSCode, open up the file named `Robot.java` in the `java/frc/robot` folder located within the `src/main` folder.
 
@@ -112,7 +112,7 @@ public class Robot extends TimedRobot {
 
 #### XBox Controller Methods
 
-We will use the following constructors and methods for the Xbox Controller ([Java](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/XboxController.html), [C++](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc\_1\_1\_xbox\_controller.html)).
+We will use the following constructors and methods for the Xbox Controller ([Java](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/XboxController.html), [C++](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_xbox_controller.html)).
 
 <table><thead><tr><th width="296">Constructor/Method</th><th>Description</th></tr></thead><tbody><tr><td><code>XboxController(int port)</code></td><td>Constructs an Xbox Controller object in your code.  You must provide the port number you will be using the controller on.</td></tr><tr><td><code>double getLeftY()</code></td><td>Returns the current value of the left joystick in the y-direction (up/down).  Values are from -1 to 1.</td></tr><tr><td><code>double getRightY()</code></td><td>Returns the current value of the right joystick in the y-direction (up/down).  Values are from -1 to 1.</td></tr></tbody></table>
 
@@ -259,7 +259,7 @@ public class Robot extends TimedRobot {
 {% endtabs %}
 
 {% hint style="info" %}
-See [How to Simulate Code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
+See [How to Simulate Code](../../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
 {% endhint %}
 
 ***

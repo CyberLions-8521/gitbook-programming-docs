@@ -12,17 +12,17 @@ Note that using Arcade Drive as a control scheme takes only slight modification 
 
 You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [Simple XRP Program Project Setup](../xrp-project-setup.md), and choose Command Robot Skeleton (Advanced) as your project template.
 
-To understand the structure of a command robot, be sure to read [Structure of a Command Robot](../../../frc-programming-theory/command-robots/structure-of-a-command-robot.md).  To better organize our code to align with the structure of a command robot, make a folder for your subsystems and for your commands within your project (either within `java/frc/robot` or within `src/main/cpp`).  Name the folders "subsystems" and "commands".
+To understand the structure of a command robot, be sure to read [Structure of a Command Robot](../../../../frc-programming-theory/command-robots/structure-of-a-command-robot.md).  To better organize our code to align with the structure of a command robot, make a folder for your subsystems and for your commands within your project (either within `java/frc/robot` or within `src/main/cpp`).  Name the folders "subsystems" and "commands".
 
 You can make new folders by right clicking where you want the folders to go within the File Explorer on the left sidebar of VSCode, and selecting "New Folder".
 
-<figure><img src="../../../.gitbook/assets/wpilib-create-new-folder.PNG" alt=""><figcaption><p>Creating a new folder within a WPILib Project</p></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/wpilib-create-new-folder.PNG" alt=""><figcaption><p>Creating a new folder within a WPILib Project</p></figcaption></figure>
 
 We are going to represent our drivebase (or drivetrain) as a subsystem in our program.  Right click within your subsystems folder, and select "Create a new class/command".  Select "Subsystem" from the dropdown list that appears, and name it `Drivetrain` (case-sensitive).
 
 We will preemptively make a tank drive command for our program as well.  Create a new class/command in your commands folder, and select "Command" from the dropdown list.  Name it `TankDriveCommand`.
 
-<figure><img src="../../../.gitbook/assets/wpilib-create-new-class-command.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../../.gitbook/assets/wpilib-create-new-class-command.PNG" alt=""><figcaption></figcaption></figure>
 
 ### The Drivetrain Class
 
@@ -192,7 +192,7 @@ public class TankDriveCommand extends Command {
 In addition to a Drivetrain, the `TankDriveCommand` class also needs to have a controller object as an attribute (PS4 Controller, X Box Controller, or something else).  Import the appropriate class or header file, and add a controller to your class as shown below.  Note that we are modifying our constructor to take the controller as parameter as well.
 
 {% hint style="info" %}
-Alternatively, you can also give the class two functions as attributes.  You could even not make a `TankDriveCommand` class at all, and just set the default command directly within `RobotContainer` using lambda functions.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).
+Alternatively, you can also give the class two functions as attributes.  You could even not make a `TankDriveCommand` class at all, and just set the default command directly within `RobotContainer` using lambda functions.  For a more in-depth explanation, see [WPILib Command Based Tank-Arcade Drive](../../../../frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md).
 {% endhint %}
 
 {% tabs %}
@@ -274,7 +274,7 @@ public class TankDriveCommand extends Command {
 {% endtabs %}
 
 {% hint style="info" %}
-Documentation for the `CommandXboxController` class can be found here ([Java](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/button/CommandXboxController.html) / [C++](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc2\_1\_1\_command\_xbox\_controller.html))
+Documentation for the `CommandXboxController` class can be found here ([Java](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/button/CommandXboxController.html) / [C++](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc2_1_1_command_xbox_controller.html))
 {% endhint %}
 
 ### Robot Container
@@ -342,7 +342,7 @@ private void configureBindings() {
 {% endtabs %}
 
 {% hint style="info" %}
-See [How to Simulate Code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
+See [How to Simulate Code](../../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
 {% endhint %}
 
 ***

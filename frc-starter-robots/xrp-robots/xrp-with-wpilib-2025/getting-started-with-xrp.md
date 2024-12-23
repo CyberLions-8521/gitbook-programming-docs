@@ -1,6 +1,6 @@
 # Getting Started with XRP
 
-To get started with the XRP Robot, make sure that you've downloaded and installed [WPILib version 2024 or later](../../getting-started/frc-wpilib.md).
+To get started with the XRP Robot, make sure that you've downloaded and installed [WPILib version 2024 or later](../../../getting-started/frc-wpilib.md).
 
 (Note: If you have already imaged the XRP, then you can skip this step, and move on.)
 
