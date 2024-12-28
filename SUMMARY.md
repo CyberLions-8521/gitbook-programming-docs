@@ -4,11 +4,17 @@
 
 ## Getting Started
 
-* [FRC WPILib](getting-started/frc-wpilib.md)
+* [Downloading Arduino IDE](getting-started/downloading-arduino-ide.md)
+* [Downloading WPILib](getting-started/frc-wpilib.md)
 * [WPILib VSCode: How to](getting-started/wpilib-vscode-how-to/README.md)
   * [WPILib: Create New Projects](getting-started/wpilib-vscode-how-to/wpilib-create-new-projects.md)
   * [WPILib: Download 3rd Party Vendor Libraries](getting-started/wpilib-vscode-how-to/wpilib-download-3rd-party-vendor-libraries.md)
   * [WPILib: Simulate Code](getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md)
+
+## Intro to Programming (Arduino)
+
+* [Start Here: How Arduino Programming Works](intro-to-programming-arduino/start-here-how-arduino-programming-works.md)
+* [First Circuit - Blinking an LED](intro-to-programming-arduino/first-circuit-blinking-an-led.md)
 
 ## FRC Programming Theory
 
