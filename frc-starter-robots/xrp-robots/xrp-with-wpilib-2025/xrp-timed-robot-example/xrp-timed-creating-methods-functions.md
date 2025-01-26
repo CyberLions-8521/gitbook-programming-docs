@@ -2,7 +2,7 @@
 
 ## Methods
 
-For a brief introduction or review of methods, see the beginning sections of [Buzzer Circuit - Methods](../../../../intro-to-programming-arduino/buzzer-circuit-methods.md).
+For a brief introduction or review of methods, see the beginning sections of [Buzzer Circuit - Methods](../../../../intro-to-programming-arduino/methods/about-methods.md).
 
 ### Defining Methods in Java/C++
 

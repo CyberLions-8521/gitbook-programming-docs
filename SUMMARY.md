@@ -14,8 +14,12 @@
 ## Intro to Programming (Arduino)
 
 * [Start Here: How Arduino Programming Works](intro-to-programming-arduino/start-here-how-arduino-programming-works.md)
-* [First Circuit - Blinking an LED](intro-to-programming-arduino/first-circuit-blinking-an-led.md)
-* [Buzzer Circuit - Methods](intro-to-programming-arduino/buzzer-circuit-methods.md)
+* [Intro to Arduino](intro-to-programming-arduino/intro-to-arduino.md)
+* [Methods](intro-to-programming-arduino/methods/README.md)
+  * [About Methods](intro-to-programming-arduino/methods/about-methods.md)
+* [Structs and Classes](intro-to-programming-arduino/structs-and-classes/README.md)
+  * [Structs in C++](intro-to-programming-arduino/structs-and-classes/structs-in-c++.md)
+  * [Classes](intro-to-programming-arduino/structs-and-classes/classes.md)
 
 ## FRC Programming Theory
 
@@ -40,5 +44,6 @@
       * [XRP Timed Robot Drive Program](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-robot-drive-program.md)
       * [XRP Timed: Working with Encoders](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-working-with-encoders.md)
       * [XRP Timed: Creating Methods (Functions)](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-creating-methods-functions.md)
+      * [XRP Timed: Making a Class](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-making-a-class.md)
     * [XRP Command Robot Example](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-command-robot-example/README.md)
       * [XRP Command Robot Drive Program](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-command-robot-example/xrp-command-robot-drive-program.md)
