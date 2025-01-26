@@ -118,7 +118,7 @@ We will use the following constructors and methods for the Xbox Controller ([Jav
 
 #### XRP Motor Methods
 
-We will use the following constructors and methods for the XRP Motor ([Java](https://github.com/wpilibsuite/allwpilib/blob/main/xrpVendordep/src/main/java/edu/wpi/first/wpilibj/xrp/XRPMotor.java), [C++](https://github.com/wpilibsuite/allwpilib/blob/main/xrpVendordep/src/main/native/include/frc/xrp/XRPMotor.h)).
+We will use the following constructors and methods for the XRP Motor ([Java](https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/xrp/XRPMotor.html), [C++](https://github.wpilib.org/allwpilib/docs/release/cpp/classfrc_1_1_x_r_p_motor.html)s).
 
 <table><thead><tr><th width="405">Constructor/Method</th><th>Description</th></tr></thead><tbody><tr><td><code>XRPMotor(int port)</code></td><td>Constructs an XRP Motor.  You must provide the port number the motor is plugged into.</td></tr><tr><td><code>void setInverted(boolean isInverted)</code></td><td>Sets the inversion state of the motor.  If the <code>isInverted</code> value is set to <code>true</code>, then positive speeds will result in the motor spinning counter clockwise (when viewing the motor with the wheel facing away from you).  Motors are not inverted by default.</td></tr><tr><td><code>void set(double speed)</code></td><td>Sets the speed of the motor.  Speeds can be any value between -1 and 1.</td></tr></tbody></table>
 

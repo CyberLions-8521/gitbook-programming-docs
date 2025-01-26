@@ -2,11 +2,13 @@
 
 ## CyberLions Starter Code
 
-You can clone a repository of starter code with this link here.
+You can clone a repository of starter code with this link here.  Once cloned, navigate to the `xrp-timed-template`  folder.
 
-[https://github.com/CyberLions-8521/wpilib-starter-v2024.3.2.git](https://github.com/CyberLions-8521/wpilib-starter-v2024.3.2.git)
+[https://github.com/CyberLions-8521/wpilib-starter-v2025.1.1](https://github.com/CyberLions-8521/wpilib-starter-v2025.1.1)
 
 ## Manually Making an XRP Project
+
+Skip this whole section if you are using the starter code.
 
 ### Creating a New Project
 

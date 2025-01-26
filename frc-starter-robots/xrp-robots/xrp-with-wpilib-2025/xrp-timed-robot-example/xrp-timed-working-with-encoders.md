@@ -106,7 +106,9 @@ public class Robot extends TimedRobot {
 
 ### Calculating Distance Per Pulse
 
-Note that this section can be skipped if you do not care for the math.  Just update your code so that it matches the example (as in, set the distance per pulse of each encoder).
+{% hint style="info" %}
+Note that this section can be skipped if you do not care for the math.  Just update your code so that it matches the example (as in, set the distance per pulse of each encoder).  Continuing reading on below if you want to understand the mathematics behind the code.
+{% endhint %}
 
 We want to set the distance per pulse of the encoder so that whenever we read the distance from the encoder, we get a meaningful answer back (because getting a reading of 687 ticks is hard to make meaning out of, but getting a reading of 8.715 inches traveled _is_ meaningful).  By setting the distance per pulse of each encoder, the encoder will convert pulses to distance for us, so that we do not have to.
 
@@ -143,7 +145,7 @@ public class Robot extends TimedRobot {
   double pulsePerRev = 585;
   
   /** New code here **/
-  double circumference = Math.pi * wheelDiameter;
+  double circumference = Math.PI * wheelDiameter;
   double distPerPulse = circumference / pulsePerRev;
   
   @Override
@@ -199,7 +201,7 @@ public class Robot extends TimedRobot {
   double pulsePerRev = 585;
   
   /** New code here **/
-  double circumference = Math.pi * wheelDiameter;
+  double circumference = Math.PI * wheelDiameter;
   double distPerPulse = circumference / pulsePerRev;
   
   @Override
