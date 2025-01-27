@@ -2,7 +2,7 @@
 
 ## Methods
 
-For a brief introduction or review of methods, see the beginning sections of [Buzzer Circuit - Methods](../../../../intro-to-programming-arduino/methods/about-methods.md).
+For a brief introduction or review of methods, see the beginning sections of [About Methods](../../../../intro-to-programming-arduino/methods/about-methods.md).
 
 ### Defining Methods in Java/C++
 
@@ -159,6 +159,10 @@ public class Robot extends TimedRobot {
 ## Refactoring with Methods
 
 We will create all our methods underneath of (but not inside of) the `teleopPeriodic`  method.
+
+{% hint style="info" %}
+The methods created below are simply common examples that increase or extend the functionality of our robot.  In practice, you are free to make any kinds of methods that you want; you can make more methods than are shown below, less methods, or other methods (such as methods that output data onto `SmartDashboard` or something else for debugging purposes).
+{% endhint %}
 
 ### Drive Method
 
@@ -571,7 +575,7 @@ public class Robot extends TimedRobot {
 
 ## Putting it All Together
 
-By now, your code might look something like this.  Notice it is much easier to understanding what is going on in `teleopPeriodic`  when each button is pressed on the controller, and that we do not necessarily need to understand the details of how each method does its job.
+By now, your code might look something like this.  Notice it is much easier to understand what is going on in `teleopPeriodic`  when each button is pressed on the controller, and that we do not necessarily need to understand the details of how each method does its job.
 
 {% tabs %}
 {% tab title="Java" %}
