@@ -2,7 +2,7 @@
 
 The timed robot code works similarly to an Arduino, where you have a function that runs one time to initialize or set up your robot, and then you have a function that runs repeatedly (continuously, and forever).
 
-```c
+```arduino
 // Sample Arduino Code
 
 // The setup function runs exactly one time, when the program starts
