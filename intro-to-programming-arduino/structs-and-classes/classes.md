@@ -16,7 +16,7 @@ If you are coming from C or C++, a class can be thought of a struct that also ha
 
 {% tabs %}
 {% tab title="Struct Pseudocode" %}
-```cpp
+```arduino
 struct RGBLed {
     // code not shown
 };
