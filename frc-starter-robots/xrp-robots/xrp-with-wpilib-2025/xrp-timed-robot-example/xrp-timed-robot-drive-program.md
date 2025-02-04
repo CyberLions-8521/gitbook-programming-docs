@@ -160,10 +160,10 @@ public class Robot extends TimedRobot {
 
 ### TeleopInit
 
-We want to invert the right motor so that when we apply positive output, the motor will still drive in the direction we consider to be forward.  Inver the right motor within the `teleopInit()` method, since we only need to invert the motor once, and at the beginning before our loop code starts.
+We want to invert the right motor so that when we apply positive output, the motor will still drive in the direction we consider to be forward.  Invert the right motor within the `teleopInit()` method, since we only need to invert the motor once, and at the beginning before our loop code starts.
 
 {% hint style="info" %}
-Alternatively, you can invert the motor within the `robotInit()` method, since we only need to invert the motor once, and `robotInit()` will run _exactly_ once when the robot turns on; the `teleopInit()` method does occur once, but it occurs once for every time that the robot switches to teleop mode.
+Alternatively, you can invert the motor within the `Robot()` constructor, since we only need to invert the motor once, and `Robot()` will get called _exactly_ once when the robot turns on and the `Robot` object is created in our code; the `teleopInit()` method does occur once, but it occurs once for every time that the robot switches to teleop mode.
 {% endhint %}
 
 {% tabs %}
