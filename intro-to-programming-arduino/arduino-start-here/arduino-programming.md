@@ -1,4 +1,4 @@
-# Start Here: How Arduino Programming Works
+# Arduino Programming
 
 ## Arduino Program Structure
 
@@ -12,7 +12,7 @@ We will learn how to program by using Arduino and other electrical components.  
 {% tab title="TinkerCAD Block Code" %}
 The blocks can be found in the "Control" tab.
 
-<div align="left"><figure><img src="../.gitbook/assets/arduino_block_basic_structure.png" alt=""><figcaption><p>Basic Structure of Arduino Code in Blocks</p></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/arduino_block_basic_structure.png" alt=""><figcaption><p>Basic Structure of Arduino Code in Blocks</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Arduino C++" %}
@@ -62,11 +62,11 @@ Note that when using TinkerCAD blocks, the block environment will use the `pinMo
 
 **digitalWrite(pin\_number, signal)**
 
-<div align="left"><figure><img src="../.gitbook/assets/arduino_block_digital_write.png" alt="" width="272"><figcaption><p>Block Version of Digital Write</p></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/arduino_block_digital_write.png" alt="" width="272"><figcaption><p>Block Version of Digital Write</p></figcaption></figure></div>
 
 **delay(time\_ms)**
 
-<div align="left"><figure><img src="../.gitbook/assets/arduino_block_delay.png" alt="" width="272"><figcaption><p>Block Version of Delay</p></figcaption></figure></div>
+<div align="left"><figure><img src="../../.gitbook/assets/arduino_block_delay.png" alt="" width="272"><figcaption><p>Block Version of Delay</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Arduino C++" %}

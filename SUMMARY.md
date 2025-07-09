@@ -13,8 +13,10 @@
 
 ## Intro to Programming (Arduino)
 
-* [Start Here: How Arduino Programming Works](intro-to-programming-arduino/start-here-how-arduino-programming-works.md)
-* [Intro to Arduino](intro-to-programming-arduino/intro-to-arduino.md)
+* [Arduino Start Here](intro-to-programming-arduino/arduino-start-here/README.md)
+  * [Arduino Creating Circuits](intro-to-programming-arduino/arduino-start-here/arduino-creating-circuits.md)
+  * [Arduino Programming](intro-to-programming-arduino/arduino-start-here/arduino-programming.md)
+* [First Program: LED Blink](intro-to-programming-arduino/first-program-led-blink.md)
 * [Methods](intro-to-programming-arduino/methods/README.md)
   * [About Methods](intro-to-programming-arduino/methods/about-methods.md)
 * [Structs and Classes](intro-to-programming-arduino/structs-and-classes/README.md)
