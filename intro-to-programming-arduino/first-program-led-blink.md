@@ -1,4 +1,4 @@
-# First Circuit - Blinking an LED
+# First Program: LED Blink
 
 ## The Circuit
 
@@ -50,8 +50,19 @@ We use `digitalWrite`  to make our pin send `HIGH` or `LOW` signals, and allow t
 <div align="left"><figure><img src="../.gitbook/assets/arduino_block_blink.png" alt=""><figcaption><p>Arduino Blink Code</p></figcaption></figure></div>
 {% endtab %}
 
+{% tab title="mBlock" %}
+<div align="left"><figure><img src="../.gitbook/assets/mblock_led_blink.png" alt=""><figcaption></figcaption></figure></div>
+{% endtab %}
+
 {% tab title="Arduino C++" %}
 ```arduino
+/*
+Note: If on mBlock, then you need the
+additional include statement below
+*/
+
+#include <Arduino.h>  // only needed if on mBlock
+
 void setup()
 {
   pinMode(13, OUTPUT);
@@ -60,7 +71,7 @@ void setup()
 void loop()
 {
   digitalWrite(13, HIGH);
-  delay(1000);
+  delay(1000);  // in milliseconds
   digitalWrite(13, LOW);
   delay(1000);
 }

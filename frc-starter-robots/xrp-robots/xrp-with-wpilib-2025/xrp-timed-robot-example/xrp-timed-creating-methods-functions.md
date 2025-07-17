@@ -2,7 +2,7 @@
 
 ## Methods
 
-For a brief introduction or review of methods, see the beginning sections of [About Methods](../../../../intro-to-programming-arduino/methods/about-methods.md).
+For a brief introduction or review of methods, see the beginning sections of [About Methods](../../../../intro-to-programming-arduino/functions/about-functions.md).
 
 ### Defining Methods in Java/C++
 

@@ -15,6 +15,12 @@ The blocks can be found in the "Control" tab.
 <div align="left"><figure><img src="../../.gitbook/assets/arduino_block_basic_structure.png" alt=""><figcaption><p>Basic Structure of Arduino Code in Blocks</p></figcaption></figure></div>
 {% endtab %}
 
+{% tab title="mBlock" %}
+In mBlock, there is no block for "setup" and "loop".  The "loop" portion is represented by the forever block (which loops forever), and any setup code will occur above the forever block.
+
+<figure><img src="../../.gitbook/assets/mBlock_basic_structure.png" alt=""><figcaption></figcaption></figure>
+{% endtab %}
+
 {% tab title="Arduino C++" %}
 ```arduino
 // library imports and variables go here
@@ -69,6 +75,22 @@ Note that when using TinkerCAD blocks, the block environment will use the `pinMo
 <div align="left"><figure><img src="../../.gitbook/assets/arduino_block_delay.png" alt="" width="272"><figcaption><p>Block Version of Delay</p></figcaption></figure></div>
 {% endtab %}
 
+{% tab title="mBlock" %}
+**pinMode(pin\_number, mode)**
+
+{% hint style="info" %}
+Note that when using mBlock blocks, the block environment will use the `pinMode` function for you; there is no block for it, and it cannot be seen when programming in blocks
+{% endhint %}
+
+**digitalWrite(pin\_number, signal)**
+
+<div align="left"><figure><img src="../../.gitbook/assets/mBlock_digital_write.png" alt=""><figcaption></figcaption></figure></div>
+
+**delay(time\_ms)**
+
+<div align="left"><figure><img src="../../.gitbook/assets/mBlock_wait.png" alt=""><figcaption></figcaption></figure></div>
+{% endtab %}
+
 {% tab title="Arduino C++" %}
 **pinMode(pin\_number, mode)**
 
@@ -103,3 +125,24 @@ void loop()
 ```
 {% endtab %}
 {% endtabs %}
+
+## Program Comments
+
+Comments are any pieces of code that are not read by the program.  They are meant to provide messages or explanations to other programmers when they read your code.
+
+<div align="left"><figure><img src="../../.gitbook/assets/tinkercad_comments.png" alt=""><figcaption><p>Comments in TinkerCAD</p></figcaption></figure></div>
+
+<figure><img src="../../.gitbook/assets/mBlock_basic_structure.png" alt=""><figcaption><p>Comments in mBlock</p></figcaption></figure>
+
+```cpp
+// Comments are the same in both C++ and in Java
+
+/* multi-line comment
+anything in here is not
+read by the program */
+
+void setup() {
+    pinMode(13, OUTPUT); // single-line comment
+    // another single-line comment
+}
+```
