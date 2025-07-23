@@ -4,9 +4,9 @@
 
 We will learn how to program by using Arduino and other electrical components.  In an Arduino program, there are three key places our code goes:
 
-* **At the top of the program -** We import other libraries and declare variables here.
-* **Inside of setup() -** In Arduino, `setup` is a special function that occurs exactly one time at the start of your program.  Usually, we put code that sets up our hardware here (e.g., setting up pins/ports, setting up initial configurations, etc.).
-* **Inside of loop() -** In Arduino, `loop` is a special function that repeats forever.  You put the main code you want to run repeatedly within `loop`.
+* **At the top of the program -** We import other libraries and create global variables here.
+* **Inside of setup() -** In Arduino, `setup` is a special function.  Any code written inside of `setup` will run exactly one time at the beginning of your program.  Usually, we put code that sets up our hardware here (e.g., setting up pins/ports, setting up initial configurations, etc.).
+* **Inside of loop() -** In Arduino, `loop` is a special function that repeats forever.  Any code written inside of  `loop`  will run forever.
 
 {% tabs %}
 {% tab title="TinkerCAD Block Code" %}
@@ -40,7 +40,7 @@ void loop()
 
 ## Arduino Programming Basics
 
-To get started with programming our Arduino, we need to learn about three, built-in, Arduino functions.  These functions allow us to write code that interacts with the Arduino.
+To get started with programming our Arduino, we will start with three, built-in, Arduino functions.  These functions allow us to write code that interacts with the Arduino.
 
 **pinMode(pin\_number, mode)**
 

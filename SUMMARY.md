@@ -17,6 +17,7 @@
   * [Arduino: What you will Learn](intro-to-programming-arduino/arduino-start-here/arduino-what-you-will-learn.md)
   * [Arduino Creating Circuits](intro-to-programming-arduino/arduino-start-here/arduino-creating-circuits.md)
   * [Arduino Programming](intro-to-programming-arduino/arduino-start-here/arduino-programming.md)
+  * [Resistors (Optional Content)](intro-to-programming-arduino/arduino-start-here/resistors-optional-content.md)
 * [First Program: LED Blink](intro-to-programming-arduino/first-program-led-blink.md)
 * [Arduino Variables](intro-to-programming-arduino/arduino-variables.md)
 * [Arduino Conditional Statements](intro-to-programming-arduino/arduino-conditional-statements.md)

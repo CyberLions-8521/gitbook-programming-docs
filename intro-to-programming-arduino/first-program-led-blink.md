@@ -2,19 +2,24 @@
 
 ## The Circuit
 
-In our first program, we will simply turn LEDs on and off.  An LED is a **L**ight **E**mitting **D**iode, and gives off light when current (electricity) runs through it in the correct direction.  Build the following circuit below.  You can build using either physical components, or virtually through TinkerCAD.
+In our first program, we will simply turn LEDs on and off.  Build the following circuit below.  You can build using either physical components, or virtually through TinkerCAD.
 
 1. Grab the necessary components.  You will need
    * Jumper wires (at least 2)
-   * x1 Resistor (at least 220 Ohms)
+   * x1 Resistor (at least 220 ohms)
    * x1 LED
    * x1 breadboard
-2. Using a jumper wire, make a connection between pin 13 and the breadboard.
-3. Connect one leg of your resistor to pin 13 (using the connection you just made on the breadboard in Step 2).
-4. Connect the other leg of your resistor to the long leg of your LED.
-5. Using a jumper wire, jump the long leg of your LED to a ground (GND) pin on your Arduino
+2. We will connect our LED so that the longer leg is connected to a power supply, and the shorter leg is connected to electrical ground.
+   1. The "flow of electricity" will be from Arduino Pin 13 (our power source) → resistor → LED (long leg) → LED (short leg) → electrical ground (GND).
+3. Power off and unplug your Arduino board.
+4. Make a connection between Arduino Pin 13 and with 1A on the breadboard.
+5. Connect one leg of your resistor to 1E on the breadboard.
+6. Connect the other leg of your resistor to 1G on the breadboard.
+   1. Note that pins A-E on a breadboard are not connected to pins F-J on the breadboard.
+7. Connect your LED to the breadboard.  In the example circuit, the longer leg is in 1J and the shorter leg is in the power rail labeled minus (-).
+8. Using a jumper cable, connect one end to the same minus power rail the LED is connected to, and connect the other leg to an Arduino GND pin.
 
-{% embed url="https://www.tinkercad.com/things/0rIwONP3MRu-basic-led-circuit" %}
+<figure><img src="../.gitbook/assets/arduino_led_blink_circuit.png" alt="" width="375"><figcaption></figcaption></figure>
 
 ## LED Blink Program
 
@@ -27,6 +32,8 @@ Our program will cause our LED to turn on and off (blink) at 1 second intervals.
 * Code loops back to the top and repeats this forever
 
 ### Setup Code
+
+If using blocks, then there is nothing to be done here.  Go directly to the loop code below.
 
 We want to configure the pin our LED is connected to as an `OUTPUT` pin, so that the pin can send voltage that turns the LED on and off.  Do so by setting the pin mode of our pin to `OUTPUT` in `setup` .
 
@@ -51,7 +58,7 @@ We use `digitalWrite`  to make our pin send `HIGH` or `LOW` signals, and allow t
 {% endtab %}
 
 {% tab title="mBlock" %}
-<div align="left"><figure><img src="../.gitbook/assets/mblock_led_blink.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../.gitbook/assets/mblock_led_blink.png" alt="" width="341"><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Arduino C++" %}
