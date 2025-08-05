@@ -24,7 +24,22 @@ Use the "set variable to" block in order to assign values to the variable.
 {% endtab %}
 
 {% tab title="Arduino C++" %}
-In C++, when you create a variable, you need to state what data type the variable is.  The most common data types include
+When you create a variable in C++, the general pattern is
+
+```cpp
+dataType variableName;
+```
+
+Once you create a variable, you can assign a value to it.  You can do this at the same time you create the variable, or at any other time.
+
+```cpp
+dataType variableName; // variable creation
+variableName= value;  // assigning it a value
+
+dataType variableName = value; // assigning a value when we create the variable
+```
+
+The most common data types include
 
 * int - whole numbers
 * float - decimal numbers
@@ -93,7 +108,8 @@ Use the same (or similar) circuit that you created for the LED Blink program.
 ```cpp
 #include <Arduino.h> // only needed if programming in mBlock
 
-int waitTime = 0.5;
+int waitTime = 0.5;  // creating a variable named waitTime and
+                     // assigning it a value of 0.5
 
 void setup()
 {
