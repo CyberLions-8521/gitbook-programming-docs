@@ -24,6 +24,8 @@
   * [Pushbuttons (Optional Content)](intro-to-programming-arduino/arduino-conditional-statements/pushbuttons-optional-content.md)
   * [Arduino If-Statements](intro-to-programming-arduino/arduino-conditional-statements/arduino-if-statements.md)
 * [Functions](intro-to-programming-arduino/functions/README.md)
+  * [Functions README First](intro-to-programming-arduino/functions/functions-readme-first.md)
+  * [Piezo Buzzers (Optional Content)](intro-to-programming-arduino/functions/piezo-buzzers-optional-content.md)
   * [About Functions](intro-to-programming-arduino/functions/about-functions.md)
 * [Structs and Classes](intro-to-programming-arduino/structs-and-classes/README.md)
   * [Structs in C++](intro-to-programming-arduino/structs-and-classes/structs-in-c++.md)
