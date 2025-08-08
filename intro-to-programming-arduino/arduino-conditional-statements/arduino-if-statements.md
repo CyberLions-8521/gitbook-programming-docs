@@ -28,11 +28,11 @@ In programming, an if-statement is a block of code that allows your program to "
 }
 </code></pre></td><td>When the condition in the diamond shape is true, then the code in the block will run.  When it is false, then the code is skipped.</td></tr><tr><td><pre class="language-cpp"><code class="lang-cpp">if (condition)
 {
-    // first section
+    // true section
 }
 else
 {
-    // second section
+    // false section
 }
 </code></pre></td><td>When the condition in the diamond shape is true, then the code in the first section (if section) of the block will run, and the second section (else block) is skipped.<br><br>When the condition in the diamond shape is false, then the code in the if section of the block is skipped, and the else block is run.</td></tr></tbody></table>
 {% endtab %}
@@ -72,24 +72,24 @@ Use the `digitalRead` function from Arduino to get inputs from the pins.  In thi
 
 void loop()
 {
-<strong>    // TinkerCAD equivalent
-</strong>    if (digitalRead(8) == HIGH)
+<strong>    // TinkerCAD equivalent - one option
+</strong>    if (digitalRead(8) == HIGH)    // if the button reads a HIGH signal
     {
-        digitalWrite(7, HIGH);
+        digitalWrite(7, HIGH);     // then, turn on the LED
     }
     else
     {
-        digitalWrite(7, LOW);
+        digitalWrite(7, LOW);      // otherwise, turn it off
     }
     
-    // mBlock equivalent
-    if (digitalRead(8))
+    // mBlock equivalent - another option
+    if (digitalRead(8))            // if the button reads HIGH (which is TRUE)
     {
-        digitalWrite(7, HIGH);
+        digitalWrite(7, HIGH);     // then, turn on the LED
     }
     else
     {
-        digitalWrite(7, LOW);
+        digitalWrite(7, LOW);      // otherwise, turn it off
     }
 }
 </code></pre>
@@ -201,6 +201,41 @@ In the second example, the second if-statement is nested within the "else" secti
 3. End the program.
 
 With this kind of nesting, the LED turns on when EITHER button 8 OR button 9 are pressed (or when they are both pressed together), and is off only when both buttons are not being pressed.
+
+### if-else-if Statements
+
+Here is another way to write nested if-statements when nesting within the else portion of the statement.
+
+<table><thead><tr><th>Nested</th><th>Alternate Syntax</th></tr></thead><tbody><tr><td><pre class="language-cpp"><code class="lang-cpp">if (condition1)
+{
+    // condition 1 is true
+}
+else
+{
+    if (condition2)
+    {
+        // condition1 is false
+        // condition2 is true
+    }
+    else
+    {
+        // both conditions false
+    }
+}
+</code></pre></td><td><pre class="language-cpp"><code class="lang-cpp">if (condition1)
+{
+    // condition1 is true
+}
+else if (condition2)
+{
+    // condition1 is false
+    // condition2 is true
+}
+else
+{
+    // both conditions false
+}
+</code></pre></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table>
 
 ### Additional Operators
 

@@ -108,8 +108,8 @@ Use the same (or similar) circuit that you created for the LED Blink program.
 ```cpp
 #include <Arduino.h> // only needed if programming in mBlock
 
-int waitTime = 0.5;  // creating a variable named waitTime and
-                     // assigning it a value of 0.5
+int waitTime = 500;  // creating a variable named waitTime and
+                     // assigning it a value of 500 (milliseconds)
 
 void setup()
 {
