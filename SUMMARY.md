@@ -31,6 +31,7 @@
     * [Functions with Parameters](intro-to-programming-arduino/functions/about-functions/functions-with-parameters.md)
     * [Function Return Types](intro-to-programming-arduino/functions/about-functions/function-return-types.md)
 * [Structs and Classes](intro-to-programming-arduino/structs-and-classes/README.md)
+  * [Using Objects and Classes](intro-to-programming-arduino/structs-and-classes/using-objects-and-classes.md)
   * [Structs in C++](intro-to-programming-arduino/structs-and-classes/structs-in-c++.md)
   * [Classes](intro-to-programming-arduino/structs-and-classes/classes.md)
 
