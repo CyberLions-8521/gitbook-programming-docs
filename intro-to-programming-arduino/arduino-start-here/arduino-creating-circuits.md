@@ -4,6 +4,17 @@
 
 A circuit is a group of electronic components that are connected together.  A circuit always starts at the positive side of its power source (e.g., the plus side of a battery), connects to any number of devices (lights, motors, sensors), and ends at the negative side of its power source (called "ground"; e.g., the minus side of a battery).
 
+{% hint style="danger" %}
+You should NEVER connect a power source's positive terminal directly to its negative terminal.  On an Arduino, this would be connecting 5V or 3.3V directly into the GND pin.  This is called a **short circuit**, and can result in the following
+
+* Hardware (such as Arduino) will not turn on when plugged in
+* Hardware will heat up (and become VERY hot)
+* Hardware begins to melt
+* Hardware explodes
+
+If any of the above occur, or you suspect you have created a short circuit, then **disconnect and turn off your electronics right away**.  Double check your circuit (with a partner or teacher) before plugging in your hardware again.
+{% endhint %}
+
 <figure><img src="../../.gitbook/assets/basic_loop_circuit.png" alt=""><figcaption></figcaption></figure>
 
 ## Connecting our Components
@@ -38,6 +49,17 @@ You can build and connect your circuit however you want.  As long as the longer 
 {% hint style="danger" %}
 Only use the 3.3V power supply to power your LEDs.  Using the 5V supply (or batteries with higher voltage) will blow out your LEDs, causing permanent damage.  If you wish to use higher voltage in your circuit, you MUST use resistors to lower the current.
 {% endhint %}
+
+## Wire Colors
+
+Note that the color of wires used _in principle_ does not matter, since at the end of the day, a wire is just a piece of conductive material (metal).  You can technically use any color wire anywhere, and it would not matter.
+
+However, to make things easier for everyone, most electricians utilize the following conventions:
+
+* Red wires - Used to indicate "hot" wires, or wires that are connected to some sort of power supply.  These are "positive" wires.
+* Black wires - Used to indicate "ground" wires, or wires that are connected to electrical ground (or the negative terminal of a power supply).  These are "negative" wires.
+
+NEVER connect the red and black wires to each other.  This is called a short circuit, and is dangerous and can cause injuries.
 
 ## Extension
 
