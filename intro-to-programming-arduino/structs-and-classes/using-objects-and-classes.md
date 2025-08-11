@@ -117,3 +117,14 @@ void loop()
     }
 }
 ```
+
+## Extension
+
+Create a circuit that has both a servo and an ultrasonic distance sensor.  Create a program that has the servo act like a dial.  When an object is placed close to the sensor, the servo should rotate towards 0 degrees.  When the object is farther away, the servo will rotate towards 180 degrees.
+
+A few things to consider:
+
+* The minimum and maximum values a servo can rotate to are 0 and 180 degrees
+* You might need to experimentally measure the minimum and maximum values detected by the sensor
+  * In TinkerCAD, you can simulate the sensor by clicking the Start Simulation button, and then clicking on the sensor itself.  It detects about 3 cm minimum, and 330 cm maximum.
+* Use the `map` function to correctly map the minimum and maximum distance detection values to the servo rotation values
