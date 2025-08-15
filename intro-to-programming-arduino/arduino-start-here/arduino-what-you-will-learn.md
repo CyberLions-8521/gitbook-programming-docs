@@ -20,9 +20,9 @@ Depending on your programming experience, these are the recommended learning "pa
 
 * **Simulate Arduino online -** Use this option if you do not have a physical Arduino, or you want to test your circuit on simulation before running it on your physical hardware.  Supports both blocks and C++.\
   [https://www.tinkercad.com/](https://www.tinkercad.com/)
-* **Work with Physical Arduino -** Use this option if you have a physical Arduino, and cannot download and install software to your device (e.g., a school issued Chromebook).  Supports both blocks and C++.\
+* **Work with Physical Arduino -** Use this option if you have a physical Arduino, and cannot download and install software to your device (e.g., a school issued Chromebook).  Supports both blocks and C++.  Be sure to read through the [Programming in mBlock](arduino-programming/programming-in-mblock.md) page to properly set up your programming environment.\
   [https://mblock.cc/](https://mblock.cc/)
-* **Arduino IDE -** Official Arduino programming environment.  Only supports C++.\
+* **Arduino IDE -** Use this option if you have a physical Arduino, and would like to use the official Arduino programming environment.  Only supports C++.\
   [https://www.arduino.cc/en/software/](https://www.arduino.cc/en/software/)
 
 

@@ -1,5 +1,11 @@
 # First Program: LED Blink
 
+## Video Tutorial
+
+Captions included in the video.  This video showcases completing the activity using ALL the options presented in this documentation (TinkerCAD, mBlock, Arduino IDE).  Use the video chapters to watch just the portion that is relevant to how you are using Arduino.
+
+{% embed url="https://www.loom.com/share/d8fe69583e964f21b5622d260eccd2dd?sid=0b3c2295-cffb-4471-9d7b-10998fea7aa0" %}
+
 ## The Circuit
 
 In our first program, we will simply turn LEDs on and off.  Build the following circuit below.  You can build using either physical components, or virtually through TinkerCAD.

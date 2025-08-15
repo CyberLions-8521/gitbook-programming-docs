@@ -12,13 +12,13 @@ We will learn how to program by using Arduino and other electrical components.  
 {% tab title="TinkerCAD Block Code" %}
 The blocks can be found in the "Control" tab.
 
-<div align="left"><figure><img src="../../.gitbook/assets/arduino_block_basic_structure.png" alt=""><figcaption><p>Basic Structure of Arduino Code in Blocks</p></figcaption></figure></div>
+<div align="left"><figure><img src="../../../.gitbook/assets/arduino_block_basic_structure.png" alt=""><figcaption><p>Basic Structure of Arduino Code in Blocks</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="mBlock" %}
 In mBlock, there is no block for "setup" and "loop".  The "loop" portion is represented by the forever block (which loops forever), and any setup code will occur above the forever block.
 
-<figure><img src="../../.gitbook/assets/mBlock_basic_structure.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/mBlock_basic_structure.png" alt=""><figcaption></figcaption></figure>
 {% endtab %}
 
 {% tab title="Arduino C++" %}
@@ -68,11 +68,11 @@ Note that when using TinkerCAD blocks, the block environment will use the `pinMo
 
 **digitalWrite(pin\_number, signal)**
 
-<div align="left"><figure><img src="../../.gitbook/assets/arduino_block_digital_write.png" alt="" width="272"><figcaption><p>Block Version of Digital Write</p></figcaption></figure></div>
+<div align="left"><figure><img src="../../../.gitbook/assets/arduino_block_digital_write.png" alt="" width="272"><figcaption><p>Block Version of Digital Write</p></figcaption></figure></div>
 
 **delay(time\_ms)**
 
-<div align="left"><figure><img src="../../.gitbook/assets/arduino_block_delay.png" alt="" width="272"><figcaption><p>Block Version of Delay</p></figcaption></figure></div>
+<div align="left"><figure><img src="../../../.gitbook/assets/arduino_block_delay.png" alt="" width="272"><figcaption><p>Block Version of Delay</p></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="mBlock" %}
@@ -84,11 +84,11 @@ Note that when using mBlock blocks, the block environment will use the `pinMode`
 
 **digitalWrite(pin\_number, signal)**
 
-<div align="left"><figure><img src="../../.gitbook/assets/mBlock_digital_write.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../../../.gitbook/assets/mBlock_digital_write.png" alt=""><figcaption></figcaption></figure></div>
 
 **delay(time\_ms)**
 
-<div align="left"><figure><img src="../../.gitbook/assets/mBlock_wait.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="../../../.gitbook/assets/mBlock_wait.png" alt=""><figcaption></figcaption></figure></div>
 {% endtab %}
 
 {% tab title="Arduino C++" %}
@@ -130,9 +130,9 @@ void loop()
 
 Comments are any pieces of code that are not read by the program.  They are meant to provide messages or explanations to other programmers when they read your code.
 
-<div align="left"><figure><img src="../../.gitbook/assets/tinkercad_comments.png" alt=""><figcaption><p>Comments in TinkerCAD</p></figcaption></figure></div>
+<div align="left"><figure><img src="../../../.gitbook/assets/tinkercad_comments.png" alt=""><figcaption><p>Comments in TinkerCAD</p></figcaption></figure></div>
 
-<figure><img src="../../.gitbook/assets/mBlock_basic_structure.png" alt=""><figcaption><p>Comments in mBlock</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/mBlock_basic_structure.png" alt=""><figcaption><p>Comments in mBlock</p></figcaption></figure>
 
 ```cpp
 // Comments are the same in both C++ and in Java
