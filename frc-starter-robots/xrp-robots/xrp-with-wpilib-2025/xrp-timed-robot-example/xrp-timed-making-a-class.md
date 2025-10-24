@@ -43,7 +43,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class Robot extends TimedRobot {
+public class Drivebase {
   private XRPMotor m_leftMotor = new XRPMotor(0);
   private XRPMotor m_rightMotor = new XRPMotor(1);
   private Encoder m_leftEncoder = new Encoder(4, 5);
@@ -166,7 +166,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import edu.wpi.first.wpilibj.Encoder;
 
-public class Robot extends TimedRobot {
+public class Drivebase {
   private XRPMotor m_leftMotor = new XRPMotor(0);
   private XRPMotor m_rightMotor = new XRPMotor(1);
   private Encoder m_leftEncoder = new Encoder(4, 5);
