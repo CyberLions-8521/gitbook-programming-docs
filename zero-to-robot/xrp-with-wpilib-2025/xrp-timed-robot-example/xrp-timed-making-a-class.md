@@ -2,7 +2,7 @@
 
 ## Classes
 
-For a brief introduction or review of classes, see the beginning portions of the [Classes page within the Structs and Classes section](../../../../intro-to-programming-arduino/structs-and-classes/classes.md).
+For a brief introduction or review of classes, see the beginning portions of the [Classes page within the Structs and Classes section](../../../intro-to-programming-arduino/structs-and-classes/classes.md).
 
 ## Why Make Classes - Subsystems
 
@@ -22,21 +22,29 @@ We will make a class that represents our drivebase.  To better organize our code
 
 You can make new folders by right clicking where you want the folders to go within the File Explorer on the left sidebar of VSCode, and selecting "New Folder".
 
-<figure><img src="../../../../.gitbook/assets/wpilib-create-new-folder.PNG" alt=""><figcaption><p>Creating a new folder within a WPILib Project</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/wpilib-create-new-folder.PNG" alt=""><figcaption><p>Creating a new folder within a WPILib Project</p></figcaption></figure>
 
 We are going to represent our drivebase (or drivetrain) as a class in our program.  Right click within your subsystems folder, and select "Create a new class/command".  Select "Empty Class" from the dropdown list that appears, and name it `Drivebase` (case-sensitive).
 
-<figure><img src="../../../../.gitbook/assets/wpilib-create-new-class-command.PNG" alt=""><figcaption><p>Creating a new class within a WPILib Project</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/wpilib-create-new-class-command.PNG" alt=""><figcaption><p>Creating a new class within a WPILib Project</p></figcaption></figure>
 
 ## Setting up the Code
 
-We have already done most of the work for the class.  We are going to copy over all the objects and methods that are directly related to the drivebase.  From the `Robot` file, move over all imports, objects, and methods related to the `XRPMotor` , and `Encoder` objects.  Leave behind the teleoperated `init` and `periodic` methods, as well as the `XboxController`.  See the code below for how your `Robot` and `Drivebase` files should look after you refactor them.
+We have already done most of the work for the class.  We are going to copy over all the objects and methods that are directly related to the drivebase.  From the `Robot` file, move over all imports, objects, and methods related to the `XRPMotor` , and `Encoder` objects.  Leave behind the teleoperated `init` and `periodic` methods, as well as the `XboxController`  and `XRPServo`.  See the code below for how your `Drivebase` file should look like.
 
-While we are moving over the code we are going to add the `private` access specifier to all our objects and variables, and `final` to all of our numeric variables.  The `private` access specifier will make it so that the only way to access our motors and encoders will be through the `public` methods that we create (as in, other programmers will only have access to things that we explicitly give them access to), and making our numbers `final` will ensure that their values will never change while the program is running.
+{% hint style="info" %}
+The imports and other lines of code should get deleted from the `Robot.java` file so that you can start cleaning it up.
+{% endhint %}
+
+While we are moving over the code we are going to add the `private` access specifier to all our objects and variables, and `final` to all of our variables.
+
+* The `private` access specifier will make it so that the only way to access our motors and encoders will be through the `public` methods that we create (as in, other programmers will only have access to things that we explicitly give them access to)
+* Making our variables `final` will ensure that their values will never change while the program is running.
+  * This makes sense physically, since the motors and encoders should never change, and neither should the wheel diameter, trackwidth, etc.
 
 {% tabs %}
 {% tab title="Java" %}
-{% code title="Drivebase.java" %}
+{% code title="Drivebase.java" lineNumbers="true" %}
 ```java
 package frc.robot.subsystems;
 
@@ -44,15 +52,15 @@ import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Drivebase {
-  private XRPMotor m_leftMotor = new XRPMotor(0);
-  private XRPMotor m_rightMotor = new XRPMotor(1);
-  private Encoder m_leftEncoder = new Encoder(4, 5);
-  private Encoder m_rightEncoder = new Encoder(6, 7);
-  private final double wheelDiameter = 2.3622;
-  private final double trackwidth = 6.1;
-  private final double pulsePerRev = 585;
-  private final double circumference = Math.PI * wheelDiameter;
-  private final double distPerPulse = circumference / pulsePerRev;
+  private final XRPMotor m_leftMotor = new XRPMotor(0);
+  private final XRPMotor m_rightMotor = new XRPMotor(1);
+  private final Encoder m_leftEncoder = new Encoder(4, 5);
+  private final Encoder m_rightEncoder = new Encoder(6, 7);
+  private final double wheelDiameter = 2.3622;  // inches
+  private final double trackwidth = 6.1;        // inches
+  private final double countsPerWheelRev = 585;
+  private final double wheelCircumference = Math.PI * wheelDiameter;  // inches
+  private final double convFactor = wheelCircumference / countsPerWheelRev;  // inches per pulse
   
   public void tankDrive(double leftSpeed, double rightSpeed) {
     m_leftMotor.set(leftSpeed);
@@ -75,56 +83,29 @@ public class Drivebase {
     return (leftEncDist + rightEncDist) / 2.0;
   }
   
+  public void driveUntilDist(double distInInches, double speed) {
+    if (averageEncoderDist() < distInInches) {
+      tankDrive(speed, speed);
+    } else {
+      tankDrive(0.0, 0.0);
+    }
+  }
+  
   public void leftTurn(double degrees) {
-    resetEncoders();
     double turnDist = (degrees / 360.0) * Math.PI * trackwidth;
-    while (averageEncoderDist() < turnDist) {
-      tankDrive(-0.5, 0.5);
+    if (averageEncoderDist() < turnDist) {
+      tankDrive(-0.5, 0.5);  // alternatively: speed can be given as parameter
+    } else {
+      tankDrive(0.0, 0.0);
     }
   }
   
   public void rightTurn(double degrees) {
-    resetEncoders();
     double turnDist = (degrees / 360.0) * Math.PI * trackwidth;
-    while (averageEncoderDist() < turnDist) {
-      tankDrive(0.5, -0.5);
-    }
-  }
-}
-```
-{% endcode %}
-
-{% code title="Robot.java" %}
-```java
-package frc.robot;
-
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
-
-public class Robot extends TimedRobot {
-  XboxController m_controller = new XboxController(0);
-  
-  @Override
-  public void teleopInit() {
-  
-  }
-  
-  @Override
-  public void teleopPeriodic() {
-    double leftStick = -m_controller.getLeftY();
-    double rightStick = -m_controller.getRightY();
-    tankDrive(leftStick, rightStick);
-    
-    if (m_controller.getXButton()) {
-      driveUntilDist(5);
-    }
-    
-    if (m_controller.getYButton()) {
-      leftTurn(90);
-    }
-    
-    if (m_controller.getBButton()) {
-      rightTurn(90);
+    if (averageEncoderDist() < turnDist) {
+      tankDrive(0.5, -0.5);  // alternatively: speed can be given as parameter
+    } else {
+      tankDrive(0.0, 0.0);
     }
   }
 }
@@ -143,15 +124,13 @@ public class Robot extends TimedRobot {
 
 ## Class Constructor
 
-Notice that the initialization code for inverting the motor, resetting the encoders, and setting up their distance per pulse is no longer within the `telopInit` method of the `Robot` file.  There are a few ways around this.
-
 We will initialize, reset, set conversion factors, etc., _within_ the class, so that anything that the `Drivebase` object would need created or initialized is done so within its own class.  This is usually done within the class constructor, and what we will do as well.
 
 {% hint style="warning" %}
 You might think that we could take advantage of the fact that the reset encoders, and set distance per pulse methods of the `Drivebase` class are public, and continue to use them within `telopInit`.  We would then also create a public "invert" method that inverts one of the drivebase motors.  However, this is going to lead to a lot of code cluttering within the `teleopInit` method, especially after we start adding more and more subsystems and need to initialize all of them.
 {% endhint %}
 
-Recall that the class constructor is the special method that has no return type, shares the same name as the class, and creates, and returns an object of the class back to us so that we can assign it to variables of that class type.
+The class constructor is the special method that has no return type, shares the same name as the class, and creates, and returns an object of the class back to us so that we can assign it to variables of that class type.  The constructor should be the first method defined after the variables (and before all the other methods).
 
 {% hint style="info" %}
 In the example below, one encoder has been initialized outside the constructor, while the other has been initialized _inside_ of the constructor.  This has been done purely for example to show you the many different ways you _could_ program a constructor, based on your preferences and needs.
@@ -159,6 +138,8 @@ In the example below, one encoder has been initialized outside the constructor, 
 
 {% tabs %}
 {% tab title="Java" %}
+Initialization outside of the constructor example.
+
 {% code title="Drivebase.java" %}
 ```java
 package frc.robot.subsystems;
@@ -167,39 +148,29 @@ import edu.wpi.first.wpilibj.xrp.XRPMotor;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Drivebase {
-  private XRPMotor m_leftMotor = new XRPMotor(0);
-  private XRPMotor m_rightMotor = new XRPMotor(1);
-  private Encoder m_leftEncoder = new Encoder(4, 5);
-  private Encoder m_rightEncoder;
+  private final XRPMotor m_leftMotor = new XRPMotor(0);
+  private final XRPMotor m_rightMotor = new XRPMotor(1);
+  private final Encoder m_leftEncoder = new Encoder(4, 5);
+  private final Encoder m_rightEncoder = new Encoder(6, 7);
+  private final double wheelDiameter = 2.3622;  // inches
+  private final double trackwidth = 6.1;        // inches
+  private final double countsPerWheelRev = 585;
+  private final double wheelCircumference = Math.PI * wheelDiameter;  // inches
+  private final double convFactor = wheelCircumference / countsPerWheelRev;  // inches per pulse
   
-  /** other constants not shown **/
-  private final double distPerPulse = circumference / pulsePerRev;
-  
-  /** vv New Code - Constructor vv **/
-  public Drivebase() {  // Note: the constructor can also take inputs if needed
-    // an example of initializing within constructor
-    m_rightEncoder = new Encoder(6, 7);
-    
-    // Other subsystem specific initializations
+  // Constructor
+  public Drivebase() {
     m_rightMotor.setInverted(true);
     resetEncoders();  // method from this class
-    setEncoderDistPerPulse(distPerPulse);  // method and constant from this class
-  }
-  /** ^^ New Code - Constructor ^^ **/
-  
-  public void resetEncoders() {
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
+    setEncoderDistPerPulse(convFactor);  // method and constant from this class
   }
   
-  public void setEncoderDistPerPulse(double distPerPulseRatio) {
-    m_leftEncoder.setDistancePerPulse(distPerPulseRatio);
-    m_rightEncoder.setDistancePerPulse(distPerPulseRatio);
-  }
-  /** other methods not shown **/
+  // Other methods below - not shown
 }
 ```
 {% endcode %}
+
+Initialization inside of constructor example.
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -210,6 +181,46 @@ public class Drivebase {
 
 {% endtab %}
 {% endtabs %}
+
+{% code title="Drivebase.java" lineNumbers="true" %}
+```java
+package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj.xrp.XRPMotor;
+import edu.wpi.first.wpilibj.Encoder;
+
+public class Drivebase {  
+  private final XRPMotor m_leftMotor;
+  private final XRPMotor m_rightMotor;
+  private final Encoder m_leftEncoder;
+  private final Encoder m_rightEncoder;
+  private final double wheelDiameter;
+  private final double trackwidth;
+  private final double countsPerWheelRev;
+  private final double wheelCircumference;
+  private final double convFactor;
+  
+  // Constructor
+  public Drivebase() {  // Note: the constructor can also take inputs if needed
+    m_leftMotor = new XRPMotor(0);
+    m_rightMotor = new XRPMotor(1);
+    m_leftEncoder = new Encoder(4, 5);
+    m_rightEncoder = new Encoder(6, 7);
+    wheelDiameter = 2.3622;  // inches
+    trackwidth = 6.1;        // inches
+    countsPerWheelRev = 585;
+    wheelCircumference = Math.PI * wheelDiameter;  // inches
+    convFactor = wheelCircumference / countsPerWheelRev;  // inches per pulse
+  
+    m_rightMotor.setInverted(true);
+    resetEncoders();  // method from this class
+    setEncoderDistPerPulse(convFactor);  // method and constant from this class
+  }
+  
+  // Other methods below - not shown
+}
+```
+{% endcode %}
 
 ## Updating the Robot File
 
@@ -229,7 +240,17 @@ import frc.robot.subsystems.Drivebase;
 {% endtab %}
 {% endtabs %}
 
-Instead of instantiating objects for each of our motors and encoders, we can instantiate a single `Drivebase` object (which contains all of the motors and encoders within it).  After we have done so, and since we kept the method names for the drivebase functionality the same, we simply need to call the methods from our `Drivebase` object instead of as standalone methods within our teleoperated code.
+Instead of creating variables for each of our motors and encoders, we can create a single `Drivebase` variable (which contains all of the motors and encoders within it).  We can then use the dot operator to call the appropriate methods from the `Drivebase` variable we have created.
+
+A summary of changes:
+
+1. Removed `XRPMotor` and `Encoder` imports
+2. Added `Drivebase` import
+3. Removed `XRPMotor` , `Encoder`, and numeric variables
+4. Added `Drivebase` variable
+5. `Robot()` constructor only initializes the servo
+6. All other code is mostly the same.  We use the methods from the `Drivebase` by using the dot operator.
+7. All created methods have been removed from `Robot.java` since they are now inside of `Drivebase.java`.
 
 {% tabs %}
 {% tab title="Java" %}
@@ -239,39 +260,57 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.xrp.XRPServo;
 
 import frc.robot.subsystems.Drivebase;  // new import for our Drivebase
 
 public class Robot extends TimedRobot {
-  XboxController m_controller = new XboxController(0);
+  private final XboxController m_controller = new XboxController(0);
+  private final XRPServo m_servo = new XRPServo(4);
+
+  // Using our constructor to create a Drivebase and initialize it
+  private final Drivebase m_drivebase = new Drivebase();
   
-  // using our constructor to create a Drivebase object
-  Drivebase m_drivebase = new Drivebase();
-  
-  @Override
-  public void teleopInit() {
-    // there's actually nothing to do here
+  public Robot() {
+    m_servo.setPosition(0.5);
   }
   
   @Override
-  public void teleopPeriodic() {
-    double leftStick = -m_controller.getLeftY();
-    double rightStick = -m_controller.getRightY();
-    
-    // Note the use of the dot operator to now access the drivebase methods
-    // from our drivebase object
-    m_drivebase.tankDrive(leftStick, rightStick);
-    
-    if (m_controller.getXButton()) {
-      m_drivebase.driveUntilDist(5);
+  public void autonomousInit() {
+    m_drivebase.resetEncoders();
+  }
+  
+  @Override
+  public void autonomousPeriodic() {
+    m_drivebase.driveUntilDist(5, 0.5);  // 5 inches at 50% speed
+  }
+  
+  @Override
+  public void teleopInit() {
+    m_drivebase.resetEncoders();
+  }
+  
+  @Override
+  public void teleopPeriodic() {    
+    // Servo code
+    if (m_controller.getAButton()) {
+      m_servo.setPosition(1.0);
+    } else {
+      m_servo.setPosition(0.5);
     }
     
-    if (m_controller.getYButton()) {
-      m_drivebase.leftTurn(90);
-    }
-    
-    if (m_controller.getBButton()) {
-      m_drivebase.rightTurn(90);
+    // Drivebase code
+    // Initial press of any of the 3 buttons
+    if (m_controller.getXButtonPressed() || m_controller.getLeftBumperButtonPressed() || m_controller.getRightBumperButtonPressed()) {
+      m_drivebase.resetEncoders();
+    } else if (m_controller.getXButton()) {  // holding x-button
+      m_drivebase.driveUntilDist(5, 0.5);
+    } else if (m_controller.getLeftBumperButton()) {  // holding left bumper
+      m_drivebase.turnLeft(90);
+    } else if (m_controller.getRightBumperButton()) { // holding right bumper
+      m_drivebase.turnRight(90);
+    } else {
+      m_drivebase.tankDrive(-m_controller.getLeftY(), -m_controller.getRightY());
     }
   }
 }

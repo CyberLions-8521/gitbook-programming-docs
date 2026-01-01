@@ -1,58 +1,8 @@
 # XRP Timed: Creating Methods (Functions)
 
-## Methods
-
-For a brief introduction or review of methods, see the beginning sections of [About Methods](../../../intro-to-programming-arduino/functions/about-functions/).
-
-### Defining Methods in Java/C++
-
-Defining methods in both Java and C++ follow similar patterns.  Methods have four (4) main components: the return type, the method name, the parameter list, and the method body.  Specifically in Java, you also include the access specifier (public or private).
-
-{% tabs %}
-{% tab title="Java" %}
-```java
-// General Pattern
-public returnType methodName(paramType paramName) {
-    // method body
-}
-
-// Example - A method that will reset both my encoders for me
-public void resetEncoders() {
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
-}
-```
-{% endtab %}
-
-{% tab title="C++ (Header)" %}
-```cpp
-// General Pattern
-returnType methodName(paramType paramName);
-
-// Example - A method that will reset both my encoders for me
-void resetEncoders();
-```
-{% endtab %}
-
-{% tab title="C++ (Source)" %}
-```cpp
-// General Pattern
-returnType methodName(paramType paramName) {
-    // method body
-}
-
-// Example - A method that will reset both my encoders for me
-void resetEncoders() {
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
-}
-```
-{% endtab %}
-{% endtabs %}
-
 ## XRP Code so Far
 
-If you have been following along with the XRP Timed Robot tutorials, you might have code that looks like this.  Notice that it is a _lot_ of code, and that it is very difficult to figure out what your program is doing overall.
+If you have been following along with the XRP Timed Robot tutorials, you might have code that looks like this.  Notice that it is very difficult to figure out what your program is doing overall in any of the robot modes (autonomous, teleoperated, and during each button press).
 
 The robot behavior is as follows:
 
@@ -192,9 +142,63 @@ public class Robot extends TimedRobot {
 {% endtab %}
 {% endtabs %}
 
+***
+
+## Methods
+
+For a brief introduction or review of methods, see the beginning sections of [About Methods](../../../intro-to-programming-arduino/functions/about-functions/).
+
+### Defining Methods in Java/C++
+
+Defining methods in both Java and C++ follow similar patterns.  Methods have four (4) main components: the return type, the method name, the parameter list, and the method body.  Specifically in Java, you also include the access specifier (public or private).
+
+{% tabs %}
+{% tab title="Java" %}
+```java
+// General Pattern
+public returnType methodName(paramType paramName) {
+    // method body
+}
+
+// Example - A method that will reset both my encoders for me
+public void resetEncoders() {
+    m_leftEncoder.reset();
+    m_rightEncoder.reset();
+}
+```
+{% endtab %}
+
+{% tab title="C++ (Header)" %}
+```cpp
+// General Pattern
+returnType methodName(paramType paramName);
+
+// Example - A method that will reset both my encoders for me
+void resetEncoders();
+```
+{% endtab %}
+
+{% tab title="C++ (Source)" %}
+```cpp
+// General Pattern
+returnType methodName(paramType paramName) {
+    // method body
+}
+
+// Example - A method that will reset both my encoders for me
+void resetEncoders() {
+    m_leftEncoder.reset();
+    m_rightEncoder.reset();
+}
+```
+{% endtab %}
+{% endtabs %}
+
 ## Refactoring with Methods
 
-We will create all our methods underneath of (but not inside of) the `teleopPeriodic`  method.
+We will create all our methods underneath of (but not inside of) the `teleopPeriodic`  method.  In essence, we are just copying the code out of the robot operating modes, and putting them in their own blocks of code.  This will allow us to reuse our code by calling the appropriate method, instead of copying and pasting the code all over again.
+
+After we've moved all the relevant code into functions, we can replace those lines of code in our original program with function calls instead.
 
 {% hint style="info" %}
 The methods created below are simply common examples that increase or extend the functionality of our robot.  In practice, you are free to make any kinds of methods that you want; you can make more methods than are shown below, less methods, or other methods (such as methods that output data onto `SmartDashboard` or something else for debugging purposes).
@@ -206,17 +210,18 @@ We will make a method named `tankDrive`, that accepts two decimal numbers as par
 
 {% tabs %}
 {% tab title="Java" %}
+{% code title="Robot.java" lineNumbers="true" %}
 ```java
 package frc.robot;
-
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-import edu.wpi.first.wpilibj.Encoder;        // Encoder
 
 public class Robot extends TimedRobot {
   /** Other code not shown **/
   
+  @Override
+  public void teleopPeriodic() {
+    // code not shown
+  }
+    
   /** New Code - Defining the Tank Drive method **/
   public void tankDrive(double leftSpeed, double rightSpeed) {
     m_leftMotor.set(leftSpeed);
@@ -224,6 +229,7 @@ public class Robot extends TimedRobot {
   }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -243,17 +249,18 @@ This method will take in no inputs, and will also be `void` , since it will also
 
 {% tabs %}
 {% tab title="Java" %}
+{% code title="Robot.java" lineNumbers="true" %}
 ```java
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-import edu.wpi.first.wpilibj.Encoder;        // Encoder
-
 public class Robot extends TimedRobot {
-  /** Previously created methods not shown **/
+  /** Other code not shown **/
+  @Override
+  public void teleopPeriodic() {
+    // code not shown
+  }
   
+  /** Previously created methods not shown **/
   /** New Code - Defining the resetEncoders method **/
   public void resetEncoders() {
     m_leftEncoder.reset();
@@ -261,6 +268,7 @@ public class Robot extends TimedRobot {
   }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -282,17 +290,18 @@ Remember that programs are simply a tool that you use to get the job done; there
 
 {% tabs %}
 {% tab title="Java" %}
+{% code title="Robot.java" lineNumbers="true" %}
 ```java
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-import edu.wpi.first.wpilibj.Encoder;        // Encoder
-
 public class Robot extends TimedRobot {
-  /** Previously created methods not shown **/
-  
+  /** Other code not shown **/  
+  @Override
+  public void teleopPeriodic() {
+    // code not shown
+  }
+
+  /** Previously created methods not shown **/  
   /** New Code - Set Distance Per Pulse Method **/
   public void setEncoderDistPerPulse(double distPerPulseRatio) {
     m_leftEncoder.setDistancePerPulse(distPerPulseRatio);
@@ -300,6 +309,7 @@ public class Robot extends TimedRobot {
   }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -321,17 +331,18 @@ Since we only care about the distance travelled by the encoder, and not necessar
 
 {% tabs %}
 {% tab title="Java" %}
+{% code title="Robot.java" lineNumbers="true" %}
 ```java
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-import edu.wpi.first.wpilibj.Encoder;        // Encoder
-
 public class Robot extends TimedRobot { 
-  /** Previously created methods not shown **/
+  /** Other code not shown **/  
+  @Override
+  public void teleopPeriodic() {
+    // code not shown
+  }
   
+  /** Previously created methods not shown **/
   public double averageEncoderDist() {
     double leftEncDist = Math.abs(m_leftEncoder.getDistance());
     double rightEncDist = Math.abs(m_rightEncoder.getDistance());
@@ -339,6 +350,7 @@ public class Robot extends TimedRobot {
   }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -407,17 +419,18 @@ You can also have your method take in a separate parameter for the speed so that
 
 {% tabs %}
 {% tab title="Java" %}
+{% code title="Robot.java" lineNumbers="true" %}
 ```java
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-import edu.wpi.first.wpilibj.Encoder;        // Encoder
-
 public class Robot extends TimedRobot { 
-  /** Previously created methods not shown **/
+  /** Other code not shown **/  
+  @Override
+  public void teleopPeriodic() {
+    // code not shown
+  }
   
+  /** Previously created methods not shown **/
   public void driveUntilDist(double distInInches, double speed) {
     if (averageEncoderDist() < distInInches) {
       tankDrive(speed, speed);
@@ -427,6 +440,7 @@ public class Robot extends TimedRobot {
   }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -444,17 +458,18 @@ We can combine the methods we made previously to make the robot make a left, or 
 
 {% tabs %}
 {% tab title="Java" %}
+{% code title="Robot.java" lineNumbers="true" %}
 ```java
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-import edu.wpi.first.wpilibj.Encoder;        // Encoder
-
 public class Robot extends TimedRobot {
-  /** Previously created methods not shown **/
+  /** Other code not shown **/  
+  @Override
+  public void teleopPeriodic() {
+    // code not shown
+  }
   
+  /** Previously created methods not shown **/
   public void leftTurn(double degrees) {
     double turnDist = (degrees / 360.0) * Math.PI * trackwidth;
     if (averageEncoderDist() < turnDist) {
@@ -474,6 +489,7 @@ public class Robot extends TimedRobot {
   }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -493,13 +509,13 @@ We do the following
 
 1. Create variables - all motors, encoders, and data (wheel diameter, conversion factors, etc.)
 2. `Robot()` - Initialize hardware
-   * reset encoders
-   * set encoder distance per pulse
+   * Reset encoders using `resetEncoders()`
+   * Set encoder distance per pulse using `setEncoderDistPerPulse(#)`
    * invert right motor
    * set servo initial position to the midpoint (0.5, or 90 degrees)
-3. `autonomousInit()` - Reset the encoders
-4. `autonomousPeriodic()` - Run the "drive for distance" behavior
-5. `teleopInit()` - Nothing needs to be done here.  All setup code has already occured in `Robot()`.  Optionally, you can reset the encoders again, just for good measure.
+3. `autonomousInit()` - Reset the encoders using `resetEncoders()`
+4. `autonomousPeriodic()` - Run the "drive for distance" behavior using `driveUntilDist(#, #)`
+5. `teleopInit()` - Nothing needs to be done here.  All setup code has already occurred in `Robot()`.  Optionally, you can reset the encoders again, just for good measure; use `resetEncoders()`
 6. `teleopPeriodic()` - Run driving for distance, turning, servos, or anything else with the controller.  Tank drive by default for the drivebase.
 
 {% hint style="info" %}
@@ -508,6 +524,7 @@ In the code below, you can see the usage of the `||` operator, which is the logi
 
 {% tabs %}
 {% tab title="Java" %}
+{% code title="Robot.java" lineNumbers="true" %}
 ```java
 package frc.robot;
 
@@ -575,14 +592,12 @@ public class Robot extends TimedRobot {
       driveUntilDist(5, 0.5);
     } else if (m_controller.getLeftBumperButton()) {  // holding left bumper
       turnLeft(90);
-    } else if (m_controller.getRightBumperButton()) {
+    } else if (m_controller.getRightBumperButton()) { // holding right bumper
       turnRight(90);
     } else {
-      double leftSpeed = -m_controller.getLeftY();
-      double rightSpeed = -m_controller.getRightY();
-      tankDrive(leftSpeed, rightSpeed);
+      tankDrive(-m_controller.getLeftY(), -m_controller.getRightY());
     }
-  }
+  }  // teleopPeriodic ends here
   
   // Here's all the functions we made to clean up the code from above
   public void tankDrive(double leftSpeed, double rightSpeed) {
@@ -631,8 +646,9 @@ public class Robot extends TimedRobot {
       tankDrive(0.0, 0.0);
     }
   }
-}
+}  // Robot class definition ends here
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
