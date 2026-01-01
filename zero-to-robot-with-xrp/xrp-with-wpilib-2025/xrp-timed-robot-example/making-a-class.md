@@ -1,4 +1,4 @@
-# XRP Timed: Making a Class
+# Making a Class
 
 ## Classes
 
@@ -44,7 +44,7 @@ While we are moving over the code we are going to add the `private` access speci
 
 {% tabs %}
 {% tab title="Java" %}
-{% code title="Drivebase.java" lineNumbers="true" %}
+{% code title="Drivebase.java" lineNumbers="true" expandable="true" %}
 ```java
 package frc.robot.subsystems;
 
@@ -171,18 +171,8 @@ public class Drivebase {
 {% endcode %}
 
 Initialization inside of constructor example.
-{% endtab %}
 
-{% tab title="C++ (Header)" %}
-
-{% endtab %}
-
-{% tab title="C++ (Source)" %}
-
-{% endtab %}
-{% endtabs %}
-
-{% code title="Drivebase.java" lineNumbers="true" %}
+{% code title="Drivebase.java" lineNumbers="true" expandable="true" %}
 ```java
 package frc.robot.subsystems;
 
@@ -221,6 +211,16 @@ public class Drivebase {
 }
 ```
 {% endcode %}
+{% endtab %}
+
+{% tab title="C++ (Header)" %}
+
+{% endtab %}
+
+{% tab title="C++ (Source)" %}
+
+{% endtab %}
+{% endtabs %}
 
 ## Updating the Robot File
 
@@ -261,14 +261,11 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.xrp.XRPServo;
-
 import frc.robot.subsystems.Drivebase;  // new import for our Drivebase
 
 public class Robot extends TimedRobot {
   private final XboxController m_controller = new XboxController(0);
   private final XRPServo m_servo = new XRPServo(4);
-
-  // Using our constructor to create a Drivebase and initialize it
   private final Drivebase m_drivebase = new Drivebase();
   
   public Robot() {
@@ -326,3 +323,29 @@ public class Robot extends TimedRobot {
 
 {% endtab %}
 {% endtabs %}
+
+***
+
+## Extension 1 - Add Ultrasonic Rangefinder
+
+Add the XRP ultrasonic rangefinder to your `Drivebase` subsystem, so that you can use the rangefinder to drive until you reach within a certain distance range of an object.
+
+Import the `XRPRangefinder` with the following line of code:
+
+```java
+import edu.wpi.first.wpilibj.xrp.XRPRangefinder;
+```
+
+Create a private `XRPRangefinder` variable named `m_rangefinder` using the constructor `XRPRangefinder()` (it does not take any inputs).  Then, using either the `getDistanceInches()` or `getDistanceMeters()` methods from the rangefinder, create the following methods in the `Drivebase.java` file.
+
+* `public double getRangeInches()` - This method returns the range distance in inches as measured by the rangefinder.
+* `public double getDistanceMeters()` - This method returns the range distance in meters as measured by the rangefinder.
+
+Then, modify the autonomous routine in `Robot.java` to drive until it gets within a certain range of an object (you can make up the value; say, 2 inches).
+
+## Extension 2 - Create Arm Subsystem
+
+Create another subsystem called `Arm`, and place it in a file named `Arm.java` within the `subsystems` folder.
+
+* Move the relevant `XRPServo` code to the `Arm` subsystem so that it can take care of it for you.
+* Update `Drivebase.java` to import `Arm.java`, create an `Arm` variable, and use it to move the servo when specific buttons are pressed.

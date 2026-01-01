@@ -1,4 +1,4 @@
-# If Statements - Controller Buttons and Servos
+# Controller Buttons and Servos
 
 ## Introduction
 
@@ -9,7 +9,7 @@ We will plug in a servo to the XRP, and run the servo when a button is pressed. 
 
 ## Code Setup
 
-We will continue based off of the code from the [Using a Controller - Tank Drive](using-a-controller-tank-drive.md) project.
+We will continue based off of the code from the [Using a Controller - Tank Drive](joysticks-and-tank-drive.md) project.
 
 {% hint style="info" %}
 In the code samples below, we'll hide the code from previous projects so that you can focus on the "new" code for the servo and if-statements that come from this project.

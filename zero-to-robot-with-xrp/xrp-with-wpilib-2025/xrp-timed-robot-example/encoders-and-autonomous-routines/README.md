@@ -1,4 +1,4 @@
-# Driving for Distance - Encoders and Autonomous Routines
+# Encoders and Autonomous Routines
 
 ## Introduction
 
@@ -16,7 +16,7 @@ We use can this to measure the distance a wheel has travelled for example.  For 
 
 ## Code Setup
 
-Your code needs to at least have motors and a controller.  We'll use code from the [Using a Controller - Tank Drive](using-a-controller-tank-drive.md) project.
+Your code needs to at least have motors and a controller.  We'll use code from the [Using a Controller - Tank Drive](../joysticks-and-tank-drive.md) project.
 
 {% hint style="info" %}
 If you're following along with the projects in order, and just came from the If-Statements - Controller Buttons and Servos project, then that is fine as well.
@@ -228,6 +228,12 @@ Note that when measuring the distance travelled, we can use the average of the d
 {% code title="Robot.java" lineNumbers="true" %}
 ```java
 @Override
+public void autonomousInit() {
+  m_leftEncoder.reset();
+  m_leftEncoder.setDistancePerPulse(convFactor);
+}
+
+@Override
 public void autonomousPeriodic() {
   // Speed of the motors is arbitrary as long as the robot is driving forward
   if (m_leftEncoder.getDistance() < 5) {  // 5 inches
@@ -254,145 +260,3 @@ public void autonomousPeriodic() {
 ### Simulate and Test Code
 
 Connect to your XRP robot and simulate your code.  You can test your "drive for distance" behavior by switching to autonomous mode.
-
-***
-
-## Extension 1 - Add the Right Encoder
-
-So far, this project has shown you how to configure and use the left encoder.  Complete your code in the sections shown below to add the right encoder, and measure using the average encoder distance for more accurate results.
-
-The right encoder's channels A and B are on ports 6 and 7 respectively.
-
-{% hint style="info" %}
-You do not need to recreate the variables for the conversion factor for the right encoder, since the values are the same.  Simply reuse the same conversion factor variable when setting the distance per pulse.
-{% endhint %}
-
-{% tabs %}
-{% tab title="Java" %}
-{% code title="Robot.java" lineNumbers="true" %}
-```java
-package frc.robot;
-
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;
-import edu.wpi.first.wpilibj.XboxController;
-
-public class Robot extends TimedRobot {
-  XboxController m_controller = new XboxController(0);
-  XRPMotor m_leftMotor = new XRPMotor(0);
-  XRPMotor m_rightMotor = new XRPMotor(1);
-  
-  Encoder m_leftEncoder = new Encoder(4, 5);
-  // TODO: Create the right encoder on ports 6 and 7
-  
-  double wheelDiameter = 2.3622;  // inches
-  double wheelCircumference = wheelDiameter * Math.PI;  // C = pi * D
-  double countsPerWheelRev = 585; // counts per one revolution of the wheel
-  double convFactor = wheelCircumference / countsPerWheelRev;
-
-  @Override
-  public void autonomousInit() {
-    m_leftEncoder.reset();
-    m_leftEncoder.setDistancePerPulse(convFactor);
-    
-    // TODO: reset and set the distance per pulse for the right encoder
-  }
-  
-  public void autonomousPeriodic() {
-    // TODO: Average the encoder readings, and store it into the variable below
-    double avgMeasuredDist = 0.0; // replace this value
-    
-    if (avgMeasuredDist < 5) { // drive for 5 inches; you can change this
-      m_leftMotor.set(0.5);
-      m_rightMotor.set(0.5);
-    } else {
-      m_leftMotor.set(0.0);
-      m_rightMotor.set(0.0);
-    }
-  }
-
-  @Override
-  public void teleopInit() {
-    m_rightMotor.setInverted(true);
-  }
-
-  @Override
-  public void teleopPeriodic() {
-    double leftSpeed = -m_controller.getLeftY();
-    double rightSpeed = -m_controller.getRightY();
-    
-    m_leftMotor.set(leftSpeed);
-    m_rightMotor.set(rightSpeed);
-  }
-}
-```
-{% endcode %}
-{% endtab %}
-
-{% tab title="C++ (Source)" %}
-
-{% endtab %}
-
-{% tab title="C++ (Header)" %}
-
-{% endtab %}
-{% endtabs %}
-
-## Extension 2 - Drive for Distance in Teleoperated Mode
-
-We can have the "drive for distance" behavior within our teleoperated code as well.  We will use the controller button presses to mimic the autonomous behavior.
-
-* `getXButtonPressed()` will get the initial button press, and mimics `autonomousInit()`
-* `getXButton()` will mimic `autonomousPeriodic()`  and will run the "drive for distance" code as long as the X-button is pressed
-
-{% tabs %}
-{% tab title="Java" %}
-{% code title="Robot.java" lineNumbers="true" %}
-```java
-@Override
-public void teleopPeriodic() {
-  m_leftEncoder.reset();
-  m_rightEncoder.reset();
-  
-  m_leftEncoder.setDistancePerPulse(convFactor);
-  m_rightEncoder.setDistancePerPulse(convFactor);
-}
-
-@Override
-public void teleopPeriodic() { 
-  if (m_controller.getXButtonPressed()) {  // initial button press - init
-    m_leftEncoder.reset();
-    m_rightEncoder.reset();
-  } else if (m_controller.getXButton()) {  // button is held - periodic
-      double avgDist = (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
-      if (avgDist < 5) {  // 5 inches
-        m_leftMotor.set(0.5);
-        m_rightMotor.set(0.5);
-      } else {
-        m_leftMotor.set(0.0);
-        m_rightMotor.set(0.0);
-      }
-  } else {  // tank drive by default if button is not being pressed
-    m_leftMotor.set(leftSpeed);
-    m_rightMotor.set(rightSpeed);
-  }
-}
-```
-{% endcode %}
-{% endtab %}
-
-{% tab title="C++ (Source)" %}
-
-{% endtab %}
-
-{% tab title="C++ (Header)" %}
-
-{% endtab %}
-{% endtabs %}
-
-## Extension 3 - Turning
-
-One way to turn the robot at a right angle (left or right turn) is to make the motors run until the robot has traced out one-fourth of a circle (a quarter-turn).  Modify your autonomous routine so that the robot makes (near) perfect left and right turns.  The image below shows _one way_ to think about the problem (how to turn in place).  There is more than one way to solve the problem, and more than one way to turn (e.g., turning in place, or turning on a pivot).
-
-<figure><img src="../../../.gitbook/assets/xrp_quarter_turn.PNG" alt=""><figcaption><p>Circle traced out when turning in place</p></figcaption></figure>

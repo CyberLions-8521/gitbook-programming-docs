@@ -1,4 +1,4 @@
-# Using a Controller - Tank Drive
+# Joysticks and Tank Drive
 
 ## Introduction
 
@@ -11,7 +11,7 @@ This page will walk you through programming the XRP as a Timed Robot using the T
 
 ## Code Setup
 
-We will continue based off of the code from the [Make the Motors Spin](variables-make-the-motors-spin.md) project.
+We will continue based off of the code from the [Make the Motors Spin](make-the-motors-spin.md) project.
 
 {% tabs %}
 {% tab title="Java" %}
