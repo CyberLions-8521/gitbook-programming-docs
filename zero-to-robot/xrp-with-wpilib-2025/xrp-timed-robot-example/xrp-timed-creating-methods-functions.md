@@ -2,7 +2,7 @@
 
 ## Methods
 
-For a brief introduction or review of methods, see the beginning sections of [About Methods](../../../../intro-to-programming-arduino/functions/about-functions/).
+For a brief introduction or review of methods, see the beginning sections of [About Methods](../../../intro-to-programming-arduino/functions/about-functions/).
 
 ### Defining Methods in Java/C++
 
@@ -54,97 +54,133 @@ void resetEncoders() {
 
 If you have been following along with the XRP Timed Robot tutorials, you might have code that looks like this.  Notice that it is a _lot_ of code, and that it is very difficult to figure out what your program is doing overall.
 
+The robot behavior is as follows:
+
+* Drives 5 inches during autonomous mode
+* During teleoperated mode...
+  * Does tank drive
+  * X-button drives 5 inches
+  * Left bumper button turns the robot 90 degrees left
+  * Right bumper button turns the robot 90 degrees right
+  * A button waves the servo
+
 {% tabs %}
 {% tab title="Java" %}
+{% code expandable="true" %}
 ```java
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-import edu.wpi.first.wpilibj.Encoder;        // Encoder
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.xrp.XRPMotor;
+import edu.wpi.first.wpilibj.xrp.XRPServo;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class Robot extends TimedRobot {
   XboxController m_controller = new XboxController(0);
   XRPMotor m_leftMotor = new XRPMotor(0);
   XRPMotor m_rightMotor = new XRPMotor(1);
+  XRPServo m_servo = new XRPServo(4);  
+  Encoder m_leftEncoder = new Encoder(4, 5);
+  Encoder m_rightEncoder = new Encoder(6, 7);
   
-  /** Creating the encoder objects **/
-  Encoder m_leftEncoder = new Encoder(4, 5);  // channels A, B on ports 4 and 5
-  Encoder m_rightEncoder = new Encoder(6, 7); // channels A, B on ports 6 and 7
   double wheelDiameter = 2.3622;  // inches
-  double trackwidth = 6.1;        // inches
-  double pulsePerRev = 585;       // pulses per revolution of the encoder
+  double wheelCircumference = wheelDiameter * Math.PI;  // C = pi * D
+  double countsPerWheelRev = 585; // counts per one revolution of the wheel
+  double convFactor = wheelCircumference / countsPerWheelRev;
   
-  // Distance traveled in inches of one revolution of the wheel
-  double circumference = Math.PI * wheelDiameter;
+  double trackWidth = 6.1;  // inches
+
+  @Override
+  public void autonomousInit() {
+    m_leftEncoder.reset();
+    m_leftEncoder.setDistancePerPulse(convFactor);
+    m_rightEncoder.reset();
+    m_rightEncoder.setDistancePerPulse(convFactor);
+  }
   
-  // Distance traveled in inches of one pulse of the encoder
-  double distPerPulse = circumference / pulsePerRev;
-  
+  public void autonomousPeriodic() {
+    double avgMeasuredDist = (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
+    if (avgMeasuredDist < 5) { // drive for 5 inches; you can change this
+      m_leftMotor.set(0.5);
+      m_rightMotor.set(0.5);
+    } else {
+      m_leftMotor.set(0.0);
+      m_rightMotor.set(0.0);
+    }
+  }
+
   @Override
   public void teleopInit() {
     m_rightMotor.setInverted(true);
+    m_servo.setPosition(0.5);
     m_leftEncoder.reset();
+    m_leftEncoder.setDistancePerPulse(convFactor);
     m_rightEncoder.reset();
-    
-    m_leftEncoder.setDistancePerPulse(distPerPulse);
-    m_rightEncoder.setDistancePerPulse(distPerPulse);
+    m_rightEncoder.setDistancePerPulse(convFactor);
   }
-  
+
   @Override
   public void teleopPeriodic() {
-    // Driving with the joysticks
     double leftSpeed = -m_controller.getLeftY();
     double rightSpeed = -m_controller.getRightY();
-    m_leftMotor.set(leftSpeed);
-    m_rightMotor.set(rightSpeed);
     
-    // Driving until a certain distance (5 inches in this example)
-    if (m_controller.getXButton()) {
-      // Reset encoders
+    if (m_controller.getXButtonPressed()) {  // initial button press - init
       m_leftEncoder.reset();
       m_rightEncoder.reset();
-      
-      while ((Math.abs(m_leftEncoder.getDistance()) + Math.abs(m_rightEncoder.getDistance())) / 2.0 < 5) {
-        // drive forward
-        m_leftMotor.set(0.5);
-        m_rightMotor.set(0.5);
-      }
-    }
-    
-    // Making a left, 90-degree turn
-    if (m_controller.getYButton()) {
-      // Reset encoders
+    } else if (m_controller.getXButton()) {  // button is held - periodic
+        double avgDist = (m_leftEncoder.getDistance() + m_rightEncoder.getDistance()) / 2.0;
+        if (avgDist < 5) {  // 5 inches
+          m_leftMotor.set(0.5);
+          m_rightMotor.set(0.5);
+        } else {
+          m_leftMotor.set(0.0);
+          m_rightMotor.set(0.0);
+        }
+    } else if (m_controller.getLeftBumperButtonPressed()) {
       m_leftEncoder.reset();
       m_rightEncoder.reset();
-    
-      // Distance the wheel travels to make the robot turn in place for 90 degrees
-      // This is 1/4th of the circle created by the wheels as the robot turns in place
-      double quarterTurn = 0.25 * Math.PI * trackwidth;
-      while ((Math.abs(m_leftEncoder.getDistance()) + Math.abs(m_rightEncoder.getDistance())) / 2.0 < quarterTurn) {
+    } else if (m_controller.getLeftBumperButton()) {
+      double absLeft = Math.abs(m_leftEncoder.getDistance());
+      double absRight = Math.abs(m_rightEncoder.getDistance());
+      double avgAbsDist = (absLeft + absRight) / 2.0;
+      double quarterTurn = 0.25 * Math.PI * trackWidth;
+      if (avgAbsDist < quarterTurn) {
         m_leftMotor.set(-0.5);
         m_rightMotor.set(0.5);
+      } else {
+        m_leftMotor.set(0.0);
+        m_rightMotor.set(0.0);
       }
-    }
-    
-    // Making a right, 90-degree turn
-    if (m_controller.getBButton()) {
-      // Reset encoders
+    } else if (m_controller.getRightBumperButtonPressed()) {
       m_leftEncoder.reset();
       m_rightEncoder.reset();
-    
-      // Distance the wheel travels to make the robot turn in place for 90 degrees
-      // This is 1/4th of the circle created by the wheels as the robot turns in place
-      double quarterTurn = 0.25 * Math.PI * trackwidth;
-      while ((Math.abs(m_leftEncoder.getDistance()) + Math.abs(m_rightEncoder.getDistance())) / 2.0 < quarterTurn) {
+    } else if (m_controller.getRightBumperButton()) {
+      double absLeft = Math.abs(m_leftEncoder.getDistance());
+      double absRight = Math.abs(m_rightEncoder.getDistance());
+      double avgAbsDist = (absLeft + absRight) / 2.0;
+      double quarterTurn = 0.25 * Math.PI * trackWidth;
+      if (avgAbsDist < quarterTurn) {
         m_leftMotor.set(0.5);
         m_rightMotor.set(-0.5);
+      } else {
+        m_leftMotor.set(0.0);
+        m_rightMotor.set(0.0);
       }
+    } else {  // tank drive by default if button is not being pressed
+      m_leftMotor.set(leftSpeed);
+      m_rightMotor.set(rightSpeed);
+    }
+    
+    if (m_controller.getAButton()) {
+      m_servo.setPosition(1.0);
+    } else {
+      m_servo.setPosition(0.5);
     }
   }
 }
 ```
+{% endcode %}
 {% endtab %}
 
 {% tab title="C++ (Header)" %}
@@ -179,20 +215,7 @@ import edu.wpi.first.wpilibj.XboxController; // XboxController
 import edu.wpi.first.wpilibj.Encoder;        // Encoder
 
 public class Robot extends TimedRobot {
-  /** Code not shown - Making all our motors, encoders, etc. **/
-  
-  @Override
-  public void teleopInit() {
-    /** code not shown **/
-  }
-  
-  @Override
-  public void teleopPeriodic() {
-    /** Updated Driving code **/
-    double leftStick = -m_controller.getLeftY();
-    double rightStick = -m_controller.getRightY();
-    tankDrive(leftStick, rightStick);  // calling the method
-  }
+  /** Other code not shown **/
   
   /** New Code - Defining the Tank Drive method **/
   public void tankDrive(double leftSpeed, double rightSpeed) {
@@ -229,23 +252,6 @@ import edu.wpi.first.wpilibj.XboxController; // XboxController
 import edu.wpi.first.wpilibj.Encoder;        // Encoder
 
 public class Robot extends TimedRobot {
-  /** Code not shown - Making all our motors, encoders, etc. **/
-  
-  /** Constants not shown - track width, wheel diameter, etc. **/
-  
-  @Override
-  public void teleopInit() {
-    m_rightMotor.setInverted(true);
-    
-    /** Updated Encoder reset - other code not shown **/
-    resetEncoders();
-  }
-  
-  @Override
-  public void teleopPeriodic() {
-    /** code not shown **/
-  }
-  
   /** Previously created methods not shown **/
   
   /** New Code - Defining the resetEncoders method **/
@@ -285,33 +291,6 @@ import edu.wpi.first.wpilibj.XboxController; // XboxController
 import edu.wpi.first.wpilibj.Encoder;        // Encoder
 
 public class Robot extends TimedRobot {
-  /** Other code not shown - Making all our motors, encoders, etc. **/
-  
-  /** Constants shown for use in the method below **/
-  double wheelDiameter = 2.3622;  // inches
-  double trackwidth = 6.1;        // inches
-  double pulsePerRev = 585;       // pulses per revolution of the encoder
-  
-  // Distance traveled in inches of one revolution of the wheel
-  double circumference = Math.PI * wheelDiameter;
-  
-  // Distance traveled in inches of one pulse of the encoder
-  double distPerPulse = circumference / pulsePerRev;
-  
-  @Override
-  public void teleopInit() {
-    m_rightMotor.setInverted(true);
-    resetEncoders();
-    
-    /** Updated set distance per pulse **/
-    setEncoderDistPerPulse(distPerPulse);
-  }
-  
-  @Override
-  public void teleopPeriodic() {
-    /** code not shown **/
-  }
-  
   /** Previously created methods not shown **/
   
   /** New Code - Set Distance Per Pulse Method **/
@@ -350,23 +329,7 @@ import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
 import edu.wpi.first.wpilibj.XboxController; // XboxController
 import edu.wpi.first.wpilibj.Encoder;        // Encoder
 
-public class Robot extends TimedRobot {
-  /** Other code not shown - Making all our motors, encoders, etc. **/
-  
-  /** Constants not shown - track width, wheel diameter, etc. **/
-  
-  @Override
-  public void teleopInit() {
-    m_rightMotor.setInverted(true);
-    resetEncoders();
-    setEncoderDistPerPulse(distPerPulse);
-  }
-  
-  @Override
-  public void teleopPeriodic() {
-    /** code not shown **/
-  }
-  
+public class Robot extends TimedRobot { 
   /** Previously created methods not shown **/
   
   public double averageEncoderDist() {
@@ -452,34 +415,14 @@ import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
 import edu.wpi.first.wpilibj.XboxController; // XboxController
 import edu.wpi.first.wpilibj.Encoder;        // Encoder
 
-public class Robot extends TimedRobot {
-  /** Other code not shown - Making all our motors, encoders, etc. **/
-  
-  /** Constants not shown - track width, wheel diameter, etc. **/
-  
-  @Override
-  public void teleopInit() {
-    /** code not shown **/
-  }
-  
-  @Override
-  public void teleopPeriodic() {
-    /** other code not shown **/
-    
-    /** Updated Drive until distance bound to X button **/
-    if (m_controller.getXButton()) {
-      driveUntilDist(5);  // inches
-    }
-  }
-  
+public class Robot extends TimedRobot { 
   /** Previously created methods not shown **/
   
-  public void driveUntilDist(double distInInches) {
-    resetEncoders();  // This calls the method we created earlier
-    while (averageEncoderDist() < distInInches) {
-      tankDrive(0.5, 0.5);  // Hardcoding to 50% speed just because.
-                            // You can change this to any speed, or use
-                            // a parameter to control the speed
+  public void driveUntilDist(double distInInches, double speed) {
+    if (averageEncoderDist() < distInInches) {
+      tankDrive(speed, speed);
+    } else {
+      tankDrive(0.0, 0.0);
     }
   }
 }
@@ -510,54 +453,23 @@ import edu.wpi.first.wpilibj.XboxController; // XboxController
 import edu.wpi.first.wpilibj.Encoder;        // Encoder
 
 public class Robot extends TimedRobot {
-  /** Other code not shown - Making all our motors, encoders, etc. **/
-  
-  /** Constants shown for use in the method below **/
-  double wheelDiameter = 2.3622;  // inches
-  double trackwidth = 6.1;        // inches
-  double pulsePerRev = 585;       // pulses per revolution of the encoder
-  
-  // Distance traveled in inches of one revolution of the wheel
-  double circumference = Math.PI * wheelDiameter;
-  
-  // Distance traveled in inches of one pulse of the encoder
-  double distPerPulse = circumference / pulsePerRev;
-  
-  @Override
-  public void teleopInit() {
-    /** code not shown **/
-  }
-  
-  @Override
-  public void teleopPeriodic() {
-    /** other code not shown **/
-    
-    /** Updated left turn bound to Y button **/
-    if (m_controller.getYButton()) {
-      leftTurn(90);  // degrees
-    }
-    
-    /** Updated right turn bound to B button **/
-    if (m_controller.getBButton()) {
-      rightTurn(90);  // degrees
-    }
-  }
-  
   /** Previously created methods not shown **/
   
   public void leftTurn(double degrees) {
-    resetEncoders();
     double turnDist = (degrees / 360.0) * Math.PI * trackwidth;
-    while (averageEncoderDist() < turnDist) {
+    if (averageEncoderDist() < turnDist) {
       tankDrive(-0.5, 0.5);  // alternatively: speed can be given as parameter
+    } else {
+      tankDrive(0.0, 0.0);
     }
   }
   
   public void rightTurn(double degrees) {
-    resetEncoders();
     double turnDist = (degrees / 360.0) * Math.PI * trackwidth;
-    while (averageEncoderDist() < turnDist) {
+    if (averageEncoderDist() < turnDist) {
       tankDrive(0.5, -0.5);  // alternatively: speed can be given as parameter
+    } else {
+      tankDrive(0.0, 0.0);
     }
   }
 }
@@ -575,7 +487,24 @@ public class Robot extends TimedRobot {
 
 ## Putting it All Together
 
-By now, your code might look something like this.  Notice it is much easier to understand what is going on in `teleopPeriodic`  when each button is pressed on the controller, and that we do not necessarily need to understand the details of how each method does its job.
+We add back (or uncommented) the `Robot()` function, which is the `Robot` constructor, and behaves as a sort of `RobotInit`.  We put the code that can (or should) happen at the _very_, _very_ beginning of the code, when the robot initially turns on.
+
+We do the following
+
+1. Create variables - all motors, encoders, and data (wheel diameter, conversion factors, etc.)
+2. `Robot()` - Initialize hardware
+   * reset encoders
+   * set encoder distance per pulse
+   * invert right motor
+   * set servo initial position to the midpoint (0.5, or 90 degrees)
+3. `autonomousInit()` - Reset the encoders
+4. `autonomousPeriodic()` - Run the "drive for distance" behavior
+5. `teleopInit()` - Nothing needs to be done here.  All setup code has already occured in `Robot()`.  Optionally, you can reset the encoders again, just for good measure.
+6. `teleopPeriodic()` - Run driving for distance, turning, servos, or anything else with the controller.  Tank drive by default for the drivebase.
+
+{% hint style="info" %}
+In the code below, you can see the usage of the `||` operator, which is the logical OR operator.  We are taking advantage of this to clean up our drivebase code, since we want to reset the encoders whenever the X-button OR left bumper button OR right bumper button is initially pressed.
+{% endhint %}
 
 {% tabs %}
 {% tab title="Java" %}
@@ -584,47 +513,78 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.xrp.XRPMotor;
+import edu.wpi.first.wpilibj.xrp.XRPServo;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.Encoder;
 
 public class Robot extends TimedRobot {
+  // 1. Create all variables
   XboxController m_controller = new XboxController(0);
   XRPMotor m_leftMotor = new XRPMotor(0);
   XRPMotor m_rightMotor = new XRPMotor(1);
+  XRPServo m_servo = new XRPServo(4);
   Encoder m_leftEncoder = new Encoder(4, 5);
   Encoder m_rightEncoder = new Encoder(6, 7);
-  double wheelDiameter = 2.3622;
-  double trackwidth = 6.1;
-  double pulsePerRev = 585;
-  double circumference = Math.PI * wheelDiameter;
-  double distPerPulse = circumference / pulsePerRev;
+  double wheelDiameter = 2.3622;  // inches
+  double trackwidth = 6.1;        // inches
+  double countsPerWheelRev = 585;
+  double wheelCircumference = Math.PI * wheelDiameter;  // inches
+  double convFactor = wheelCircumference / countsPerWheelRev;  // inches per pulse
   
-  @Override
-  public void teleopInit() {
+  // 2. Initialize hardware
+  public Robot() {
     m_rightMotor.setInverted(true);
     resetEncoders();
-    setEncoderDistPerPulse(distPerPulse);
+    setEncoderDistPerPulse(convFactor);
+    m_servo.setPosition(0.5);
   }
   
+  // 3. Autonomous routine initialization code
   @Override
-  public void teleopPeriodic() {
-    double leftStick = -m_controller.getLeftY();
-    double rightStick = -m_controller.getRightY();
-    tankDrive(leftStick, rightStick);
-    
-    if (m_controller.getXButton()) {
-      driveUntilDist(5);
+  public void autonomousInit() {
+    resetEncoders();
+  }
+  
+  // 4. Autonomous routine - drive for 5 inches
+  @Override
+  public void autonomousPeriodic() {
+    driveUntilDist(5, 0.5);  // 5 inches at 50% speed
+  }
+  
+  // 5. Optionally reset encoders for teleop mode
+  @Override
+  public void teleopInit() {
+    resetEncoders();
+  }
+  
+  // 6. Main robot loop during teleoperated mode
+  @Override
+  public void teleopPeriodic() {    
+    // Servo code
+    if (m_controller.getAButton()) {
+      m_servo.setPosition(1.0);
+    } else {
+      m_servo.setPosition(0.0);
     }
     
-    if (m_controller.getYButton()) {
-      leftTurn(90);
-    }
-    
-    if (m_controller.getBButton()) {
-      rightTurn(90);
+    // Drivebase code
+    // Initial press of any of the 3 buttons
+    if (m_controller.getXButtonPressed() || m_controller.getLeftBumperButtonPressed() || m_controller.getRightBumperButtonPressed()) {
+      resetEncoders();
+    } else if (m_controller.getXButton()) {  // holding x-button
+      driveUntilDist(5, 0.5);
+    } else if (m_controller.getLeftBumperButton()) {  // holding left bumper
+      turnLeft(90);
+    } else if (m_controller.getRightBumperButton()) {
+      turnRight(90);
+    } else {
+      double leftSpeed = -m_controller.getLeftY();
+      double rightSpeed = -m_controller.getRightY();
+      tankDrive(leftSpeed, rightSpeed);
     }
   }
   
+  // Here's all the functions we made to clean up the code from above
   public void tankDrive(double leftSpeed, double rightSpeed) {
     m_leftMotor.set(leftSpeed);
     m_rightMotor.set(rightSpeed);
@@ -646,19 +606,29 @@ public class Robot extends TimedRobot {
     return (leftEncDist + rightEncDist) / 2.0;
   }
   
+  public void driveUntilDist(double distInInches, double speed) {
+    if (averageEncoderDist() < distInInches) {
+      tankDrive(speed, speed);
+    } else {
+      tankDrive(0.0, 0.0);
+    }
+  }
+  
   public void leftTurn(double degrees) {
-    resetEncoders();
     double turnDist = (degrees / 360.0) * Math.PI * trackwidth;
-    while (averageEncoderDist() < turnDist) {
-      tankDrive(-0.5, 0.5);
+    if (averageEncoderDist() < turnDist) {
+      tankDrive(-0.5, 0.5);  // alternatively: speed can be given as parameter
+    } else {
+      tankDrive(0.0, 0.0);
     }
   }
   
   public void rightTurn(double degrees) {
-    resetEncoders();
     double turnDist = (degrees / 360.0) * Math.PI * trackwidth;
-    while (averageEncoderDist() < turnDist) {
-      tankDrive(0.5, -0.5);
+    if (averageEncoderDist() < turnDist) {
+      tankDrive(0.5, -0.5);  // alternatively: speed can be given as parameter
+    } else {
+      tankDrive(0.0, 0.0);
     }
   }
 }

@@ -9,7 +9,7 @@ Our goal with this first project is to simply make the motors spin, so that we c
 You should have already created and set up a WPILib project for your XRP robot.  If you have not already done so, follow the instructions in [XRP Project Setup](../xrp-project-setup.md), and choose Timed Skeleton (Advanced) as your project template.
 
 {% hint style="info" %}
-To understand the structure of a timed robot, you can read the [Timed Robots](../../../../frc-programming-theory/timed-robots.md) page.
+To understand the structure of a timed robot, you can read the [Timed Robots](../../../frc-programming-theory/timed-robots.md) page.
 {% endhint %}
 
 In the left-hand file explorer sidebar of VSCode, open up the file named `Robot.java` in the `java/frc/robot` folder located within the `src/main` folder.
@@ -68,9 +68,9 @@ import edu.wpi.first.wpilibj.xrp.XRPMotor;
 
 Here are the steps we will take to make our motor spin:
 
-1. Create the motors (in code)
-2. Initialize and / or configure the motors (if needed)
-3. Run the motors
+1. <mark style="color:red;">**Create**</mark> the motors (in code)
+2. <mark style="color:red;">**Initialize**</mark> and / or configure the motors (if needed)
+3. <mark style="color:red;">**Run**</mark> the motors
 
 {% hint style="info" %}
 Note that program comments in both C++ and Java are denoted by the double-slash `//` or live between `/*` and `*/`.  Program comments are not read by the robot, and are provided here to annotate any code shown to you.
@@ -114,9 +114,9 @@ Recall that in programming, a variable is a named container that can hold a valu
 
 To create a variable in Java / C++, you must provide the following:
 
-1. Data type of the variable
-2. Name of the variable
-3. (Optional) The value of the variable
+1. <mark style="color:red;">**Data type**</mark> of the variable
+2. <mark style="color:red;">**Name**</mark> of the variable
+3. <mark style="color:red;">**(Optional) The value**</mark> of the variable
 
 {% tabs %}
 {% tab title="Java" %}
@@ -247,10 +247,10 @@ public class Robot extends TimedRobot {
 
 ### Simulate and Test Code
 
-Connect to the XRP and [simulate your code](../../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md) to run it.
+Connect to the XRP and [simulate your code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md) to run it.
 
 {% hint style="info" %}
-See [How to Simulate Code](../../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
+See [How to Simulate Code](../../../getting-started/wpilib-vscode-how-to/wpilib-simulate-code.md).
 {% endhint %}
 
 ***

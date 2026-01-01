@@ -4,10 +4,10 @@
 
 This page will walk you through programming the XRP as a Timed Robot using the Tank Drive operator control scheme.
 
-* The left joystick of a controller controls the left motor
-* The right joystick of a controller controls the right motor
-* Pushing up on a joystick makes the motor spin forward
-* Pulling back on a joystick makes the motor spin in reverse
+* The <mark style="color:red;">**left joystick**</mark> of a controller controls the <mark style="color:red;">**left motor**</mark>
+* The <mark style="color:red;">**right joystick**</mark> of a controller controls the <mark style="color:red;">**right motor**</mark>
+* <mark style="color:red;">**Pushing up**</mark> on a joystick makes the motor <mark style="color:red;">**spin forward**</mark>
+* <mark style="color:red;">**Pulling back**</mark> on a joystick makes the motor <mark style="color:red;">**spin in reverse**</mark>
 
 ## Code Setup
 
@@ -73,9 +73,9 @@ import edu.wpi.first.wpilibj.XboxController;
 
 Here are the steps we will take to drive our robot with a controller:
 
-1. Create the controller
-2. Get the joystick value of the controller
-3. Use the joystick value to set the speed of the motor
+1. <mark style="color:red;">**Create**</mark> the controller
+2. <mark style="color:red;">**Get the joystick value**</mark> of the controller
+3. <mark style="color:red;">**Use the joystick value**</mark> to set the speed of the motor
 
 ### Creating a Controller
 
