@@ -13,8 +13,7 @@ Navigate to the mBlock IDE at [https://ide.mblock.cc/](https://ide.mblock.cc/). 
 1. Plug your Arduino into your computer using a USB-A to USB-B cable.
 2. On the left-hand-side, underneath the Stage in the "Devices" tab, click on "Add".\
    ![](../../../.gitbook/assets/mBlock_add_device.png)
-3.  Select the "Non-official development" tab, and select your Arduino device (for the purposes of this documentation, we will use the Arduino Uno).\
-
+3.  Select the "Non-official development" tab, and select your Arduino device (for the purposes of this documentation, we will use the Arduino Uno).<br>
 
     <div align="left"><figure><img src="../../../.gitbook/assets/mBlock_select_device.png" alt=""><figcaption></figcaption></figure></div>
 4. On the left-hand-side, click on Serial, and select the Serial port your Arduino device is connected to (if it is the only thing connected to your computer, then you should only have one option).\

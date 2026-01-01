@@ -46,19 +46,24 @@
   * [Binding Commands to Triggers](frc-programming-theory/command-robots/binding-commands-to-triggers.md)
   * [WPILib Command Based Tank-Arcade Drive](frc-programming-theory/command-robots/wpilib-command-based-tank-arcade-drive.md)
 
-## FRC Starter Robots
+## Zero to Robot
 
-* [Romi Robots](frc-starter-robots/romi-robots.md)
-* [XRP Robots](frc-starter-robots/xrp-robots/README.md)
-  * [XRP with Arduino IDE](frc-starter-robots/xrp-robots/xrp-with-arduino-ide/README.md)
-    * [XRP - Arduino Documentation](frc-starter-robots/xrp-robots/xrp-with-arduino-ide/xrp-arduino-documentation.md)
-  * [XRP with WPILib 2025](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/README.md)
-    * [Getting Started with XRP](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/getting-started-with-xrp.md)
-    * [XRP Project Setup](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-project-setup.md)
-    * [XRP Timed Robot Example](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/README.md)
-      * [XRP Timed Robot Drive Program](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-robot-drive-program.md)
-      * [XRP Timed: Working with Encoders](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-working-with-encoders.md)
-      * [XRP Timed: Creating Methods (Functions)](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-creating-methods-functions.md)
-      * [XRP Timed: Making a Class](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-making-a-class.md)
-    * [XRP Command Robot Example](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-command-robot-example/README.md)
-      * [XRP Command Robot Drive Program](frc-starter-robots/xrp-robots/xrp-with-wpilib-2025/xrp-command-robot-example/xrp-command-robot-drive-program.md)
+* [Romi Robots](zero-to-robot/romi-robots.md)
+* [XRP Robots](zero-to-robot/xrp-robots/README.md)
+  * [XRP with Arduino IDE](zero-to-robot/xrp-robots/xrp-with-arduino-ide/README.md)
+    * [XRP - Arduino Documentation](zero-to-robot/xrp-robots/xrp-with-arduino-ide/xrp-arduino-documentation.md)
+  * [XRP with WPILib 2025](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/README.md)
+    * [Getting Started with XRP](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/getting-started-with-xrp.md)
+    * [XRP Project Setup](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-project-setup.md)
+    * [XRP Timed Robot Example](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/README.md)
+      * [Variables - Make the Motors Spin](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/variables-make-the-motors-spin.md)
+      * [Using a Controller - Tank Drive](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/using-a-controller-tank-drive.md)
+      * [XRP Timed: Working with Encoders](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-working-with-encoders.md)
+      * [XRP Timed: Creating Methods (Functions)](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-creating-methods-functions.md)
+      * [XRP Timed: Making a Class](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-timed-robot-example/xrp-timed-making-a-class.md)
+    * [XRP Command Robot Example](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-command-robot-example/README.md)
+      * [XRP Command Robot Drive Program](zero-to-robot/xrp-robots/xrp-with-wpilib-2025/xrp-command-robot-example/xrp-command-robot-drive-program.md)
+
+## Command Based Programming
+
+* [Page 1](command-based-programming/page-1.md)

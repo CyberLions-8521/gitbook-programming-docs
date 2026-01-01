@@ -12,7 +12,7 @@ We use can this to measure the distance a wheel has travelled for example.  For 
 
 ### Starter Code
 
-This page assumes you've created the [XRP Timed Robot Drive Program](xrp-timed-robot-drive-program.md).  You can also use the starter code found in the [CyberLions Starter Code Repository](https://github.com/CyberLions-8521/wpilib-starter-v2024.3.2), and use the XRP Timed starter code.
+This page assumes you've created the [XRP Timed Robot Drive Program](using-a-controller-tank-drive.md).  You can also use the starter code found in the [CyberLions Starter Code Repository](https://github.com/CyberLions-8521/wpilib-starter-v2024.3.2), and use the XRP Timed starter code.
 
 ### Encoder Class
 

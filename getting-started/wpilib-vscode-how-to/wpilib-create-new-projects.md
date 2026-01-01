@@ -2,8 +2,7 @@
 
 ### Creating a New WPILib Project
 
-Open WPILib VSCode.  Click on the WPILib "W" symbol in the top right to open up the command palette, or press CTRL+Shift+P (Windows), and select "Create new project".\
-
+Open WPILib VSCode.  Click on the WPILib "W" symbol in the top right to open up the command palette, or press CTRL+Shift+P (Windows), and select "Create new project".<br>
 
 <figure><img src="../../.gitbook/assets/wpilib-create-new-project.PNG" alt=""><figcaption><p>Command Palette: Create a new project</p></figcaption></figure>
 

@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # WPILib: Download 3rd Party Vendor Libraries
 
 ### Downloading 3rd Party Vendor Libraries
