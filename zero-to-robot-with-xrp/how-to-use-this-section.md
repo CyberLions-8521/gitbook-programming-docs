@@ -6,6 +6,11 @@ At the time of writing this documentation, the XRP robots use the same WPILib li
 
 Additionally, FRC teams can get an XRP for free from Digikey (see [Digikey FRC Resources](https://www.digikey.com/en/resources/first) page).
 
+* Making motors spin
+* Using a controller to drive the robot
+* Using encoders and programming an autonomous routine
+* Organizing code with functions and classes
+
 ## Other Robots
 
 As the programming style is basically the same, you _could_ potentially switch out the XRP specific hardware for motors from the Romi robot, or SparkMax motor controllers plugged into PWM ports (CIM, NEO, etc.), and your code will still be able to run said other hardware.  As in, you can still follow along with the XRP tutorials, and just use other hardware as needed.
