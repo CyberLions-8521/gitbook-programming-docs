@@ -4,6 +4,7 @@
 
 ## Getting Started
 
+* [How to Use this Guide](getting-started/romi-robots.md)
 * [Downloading Arduino IDE](getting-started/downloading-arduino-ide.md)
 * [Downloading WPILib](getting-started/frc-wpilib.md)
 * [WPILib VSCode: How to](getting-started/wpilib-vscode-how-to/README.md)
@@ -48,7 +49,7 @@
 
 ## Zero to Robot with XRP
 
-* [Romi Robots](zero-to-robot-with-xrp/romi-robots.md)
+* [How to Use this Section](zero-to-robot-with-xrp/how-to-use-this-section.md)
 * [XRP with WPILib 2025](zero-to-robot-with-xrp/xrp-with-wpilib-2025/README.md)
   * [Getting Started with XRP](zero-to-robot-with-xrp/xrp-with-wpilib-2025/getting-started-with-xrp.md)
   * [XRP Project Setup](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-project-setup.md)
@@ -69,6 +70,14 @@
   * [XRP with Arduino IDE](zero-to-robot-with-xrp/xrp-robots/xrp-with-arduino-ide/README.md)
     * [XRP - Arduino Documentation](zero-to-robot-with-xrp/xrp-robots/xrp-with-arduino-ide/xrp-arduino-documentation.md)
 
-## Command Based Programming
+## Using REV Robotics SparkMax Controllers \[WIP]
 
-* [Page 1](command-based-programming/page-1.md)
+* [How to Use this Section](using-rev-robotics-sparkmax-controllers-wip/how-to-use-this-section.md)
+
+## Using CTRE TalonFX Controllers \[WIP]
+
+* [How to Use this Section](using-ctre-talonfx-controllers-wip/how-to-use-this-section.md)
+
+## Command Based Programming \[WIP]
+
+* [Page 1](command-based-programming-wip/page-1.md)
