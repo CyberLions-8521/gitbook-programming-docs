@@ -64,6 +64,8 @@
     * [Creating Methods (Functions)](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-timed-robot-example/creating-methods-functions.md)
     * [Making a Class](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-timed-robot-example/making-a-class.md)
     * [Next Steps - Advanced Programming](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-timed-robot-example/next-steps-advanced-programming.md)
+  * [XRP Additional Topics](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-additional-topics/README.md)
+    * [Feedback Control \[WIP\]](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-additional-topics/feedback-control-wip.md)
   * [XRP Command Robot Example](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-command-robot-example/README.md)
     * [XRP Command Robot Drive Program](zero-to-robot-with-xrp/xrp-with-wpilib-2025/xrp-command-robot-example/xrp-command-robot-drive-program.md)
 * [XRP Robots](zero-to-robot-with-xrp/xrp-robots/README.md)
