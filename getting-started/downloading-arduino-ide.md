@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # Downloading Arduino IDE
 
 Make sure you have downloaded the Arduino IDE using the link below.

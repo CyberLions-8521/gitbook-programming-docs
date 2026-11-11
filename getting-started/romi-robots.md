@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # How to Use this Guide
 
 ## What this Guide Is

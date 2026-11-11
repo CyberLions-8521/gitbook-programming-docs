@@ -1,3 +1,7 @@
+---
+hidden: true
+---
+
 # XRP Project Setup
 
 ## CyberLions Starter Code
@@ -14,7 +18,7 @@ Skip this whole section if you are using the starter code.
 
 ### Creating a New Project
 
-See [WPILib: Create New Projects](../../../getting-started/wpilib-vscode-how-to/wpilib-create-new-projects.md).  To best facilitate learning, it is recommended to use the Timed Skeleton (Advanced) project template.  You can use the XRP template, but this template comes pre-built with the entire XRP drivebase already programmed.
+See [WPILib: Create New Projects](../../getting-started/getting-started/wpilib-create-new-projects.md).  To best facilitate learning, it is recommended to use the Timed Skeleton (Advanced) project template.  You can use the XRP template, but this template comes pre-built with the entire XRP drivebase already programmed.
 
 {% hint style="info" %}
 The XRP vendor library and code simulation are already included if you use the XRP specific template from the WPILib.  You only need to follow the steps below if using the Timed Skeleton (Advanced) template.

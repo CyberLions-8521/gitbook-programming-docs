@@ -16,7 +16,7 @@ We use can this to measure the distance a wheel has travelled for example.  For 
 
 ## Code Setup
 
-Your code needs to at least have motors and a controller.  We'll use code from the [Using a Controller - Tank Drive](../joysticks-and-tank-drive.md) project.
+Your code needs to at least have motors and a controller.  We'll use code from the [Using a Controller - Tank Drive](../../joysticks-and-driving.md) project.
 
 {% hint style="info" %}
 If you're following along with the projects in order, and just came from the If-Statements - Controller Buttons and Servos project, then that is fine as well.

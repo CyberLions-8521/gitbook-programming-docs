@@ -1,4 +1,8 @@
-# FRC WPILib
+---
+hidden: true
+---
+
+# Downloading WPILib
 
 Make sure you have downloaded the latest version of WPILib.  Choose installer that corresponds to the language you'll be using to program your robot.
 
