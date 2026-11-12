@@ -6,6 +6,8 @@ description: >-
 
 # Welcome
 
+Visit this page at: [https://8521-cyberlions.gitbook.io/programming-documentation](https://8521-cyberlions.gitbook.io/programming-documentation)
+
 This is a work in progress and is being actively developed by Team 8521 CyberLions.  The goal of this project is to provide more "user friendly" documentation for high school students participating in an FRC program.
 
 [CyberLions FRC Programming Documentation](https://github.com/CyberLions-8521/gitbook-programming-docs) © 2024 is licensed under [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
