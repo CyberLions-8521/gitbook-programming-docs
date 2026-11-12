@@ -76,8 +76,6 @@ public void teleopPeriodic() {
 
 ## Extension
 
-Congratulations, you have successfully driven your first XRP.  The starter code has additional functions you can play around with to interact with your robot.
-
-* **Challenge 1** - Adding to the `if-else if` chain, make the robot do different things when each key is pressed (Z, X, C, V).
+**Challenge** - Adding to the `if-else if` chain, make the robot do different things when each key is pressed (Z, X, C, V).
 
 <table><thead><tr><th width="187">Function</th><th>Description</th></tr></thead><tbody><tr><td><code>driveForward()</code></td><td>The robot drives forward.</td></tr><tr><td><code>driveReverse()</code></td><td>The robot drives backwards.</td></tr><tr><td><code>drive(fwd, turn)</code></td><td>The robot drives forward with the effort specified by <code>fwd</code> and turns with the effort specified by <code>turn</code>.  The range of allowed values for <code>fwd</code> and <code>turn</code> are between <code>-1.0</code> and <code>1.0</code>.</td></tr><tr><td><code>stop()</code></td><td>The robot stops driving.</td></tr><tr><td><code>getZButton()</code></td><td>Check whether the Z key is being pressed.  The value is <code>true</code> if it is being pressed, and <code>false</code> when it is not being pressed.</td></tr><tr><td><code>getXButton()</code></td><td>Check whether the X key is being pressed.  The value is <code>true</code> if it is being pressed, and <code>false</code> when it is not being pressed.</td></tr><tr><td><code>getCButton()</code></td><td>Check whether the C key is being pressed.  The value is <code>true</code> if it is being pressed, and <code>false</code> when it is not being pressed.</td></tr><tr><td><code>getVButton()</code></td><td>Check whether the V key is being pressed.  The value is <code>true</code> if it is being pressed, and <code>false</code> when it is not being pressed.</td></tr></tbody></table>

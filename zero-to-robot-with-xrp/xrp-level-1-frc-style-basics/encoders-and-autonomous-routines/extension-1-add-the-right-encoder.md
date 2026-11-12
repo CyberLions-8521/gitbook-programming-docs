@@ -2,7 +2,13 @@
 
 ## Add the Right Encoder
 
-So far, this project has shown you how to configure and use the left encoder.  Complete your code in the sections shown below to add the right encoder, and measure using the average encoder distance for more accurate results.
+So far, this project has shown you how to configure and use the left encoder.  Add a right encoder to your program.
+
+* Configure it by setting the distance per pulse within `Robot()`.
+* Reset its distance measurement within `autonomousInit()`.
+* Use it alongside the left encoder to measure the distance traveled to travel for distance in `autonomousPeriodic()`.
+
+You can either use your code, or copy and complete the code below.
 
 The right encoder's channels A and B are on ports 6 and 7 respectively.
 
@@ -17,29 +23,38 @@ You do not need to recreate the variables for the conversion factor for the righ
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+
+import frc.robot.util.KeyboardController;
+
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.xrp.*;
 
 public class Robot extends TimedRobot {
-  XboxController m_controller = new XboxController(0);
-  XRPMotor m_leftMotor = new XRPMotor(0);
-  XRPMotor m_rightMotor = new XRPMotor(1);
+  private final KeyboardController m_controller = new KeyboardController(0);
+  private final XRPMotor m_leftMotor = new XRPMotor(0);
+  private final XRPMotor m_rightMotor = new XRPMotor(1);
   
-  Encoder m_leftEncoder = new Encoder(4, 5);
+  private final Encoder m_leftEncoder = new Encoder(4, 5);
   // TODO: Create the right encoder on ports 6 and 7
   
-  double wheelDiameter = 2.3622;  // inches
-  double wheelCircumference = wheelDiameter * Math.PI;  // C = pi * D
-  double countsPerWheelRev = 585; // counts per one revolution of the wheel
-  double convFactor = wheelCircumference / countsPerWheelRev;
+  private final double wheelDiameter = 2.3622;  // inches
+  private final double wheelCircumference = wheelDiameter * Math.PI;  // C = pi * D
+  private final double countsPerWheelRev = 585; // counts per one revolution of the wheel
+  private final double convFactor = wheelCircumference / countsPerWheelRev;
+  
+  private double fwd;
+  private double turn;
+
+  public Robot() {
+    m_leftEncoder.setDistancePerPulse(convFactor);
+    m_rightMotor.setInverted(true);
+  }  
 
   @Override
   public void autonomousInit() {
     m_leftEncoder.reset();
-    m_leftEncoder.setDistancePerPulse(convFactor);
-    
     // TODO: reset and set the distance per pulse for the right encoder
+    
   }
   
   public void autonomousPeriodic() {
@@ -57,16 +72,16 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    m_rightMotor.setInverted(true);
+    
   }
 
   @Override
   public void teleopPeriodic() {
-    double leftSpeed = -m_controller.getLeftY();
-    double rightSpeed = -m_controller.getRightY();
+    fwd = -m_controller.getWSAxis();
+    turn = -m_controller.getADAxis();
     
-    m_leftMotor.set(leftSpeed);
-    m_rightMotor.set(rightSpeed);
+    m_leftMotor.set(fwd - turn);
+    m_rightMotor.set(fwd + turn);
   }
 }
 ```

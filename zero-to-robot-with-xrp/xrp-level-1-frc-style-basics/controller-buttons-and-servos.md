@@ -1,6 +1,12 @@
 # Controller Buttons and Servos
 
-## Introduction
+## Starter Code
+
+We will use the starter code found here: [https://github.com/CyberLions-8521/xrp-making-hardware](https://github.com/CyberLions-8521/xrp-making-hardware)
+
+If you have not already, then clone the starter code repository to your computer by following the steps in [Getting Starter Code](../../getting-started/getting-started/getting-starter-code.md).
+
+## Overview
 
 We will plug in a servo to the XRP, and run the servo when a button is pressed.  A servo can be thought of as a motor.  The non-continuous servos that the XRP robots come with can only spin up to half a circle (180 degrees).
 
@@ -9,7 +15,7 @@ We will plug in a servo to the XRP, and run the servo when a button is pressed. 
 
 ## Code Setup
 
-We will continue based off of the code from the [Using a Controller - Tank Drive](../joysticks-and-driving.md) project.
+We will continue based off of the code from the [Joysticks and Driving](joysticks-and-driving.md) project.
 
 {% hint style="info" %}
 In the code samples below, we'll hide the code from previous projects so that you can focus on the "new" code for the servo and if-statements that come from this project.
@@ -19,53 +25,30 @@ In the code samples below, we'll hide the code from previous projects so that yo
 {% tab title="Java" %}
 {% code lineNumbers="true" expandable="true" %}
 ```java
-package frc.robot;
-
-import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.xrp.XRPServo;
-import edu.wpi.first.wpilibj.XboxController; // XboxController
-
 public class Robot extends TimedRobot {
+  private final KeyboardController m_controller = new KeyboardController(0);
+  private final XRPMotor m_leftMotor = new XRPMotor(0);
+  private final XRPMotor m_rightMotor = new XRPMotor(1);
   
-  // Creating our controller and motor objects
-  XboxController m_controller = new XboxController(0);
-  XRPMotor m_leftMotor = new XRPMotor(0);
-  XRPMotor m_rightMotor = new XRPMotor(1);
-  XRPServo m_servo = new XRPServo(4);
+  double forwardSpeed;
+  double turnSpeeed;
+
+  public Robot() {
+    m_rightMotor.setInverted(true);
 
   @Override
   public void teleopInit() {
-    m_rightMotor.setInverted(true);
-    m_servo.setPosition(0.5);
+
   }
 
   @Override
   public void teleopPeriodic() {
-    // Getting the values from the joysticks    
-    double leftSpeed = -m_controller.getLeftY();
-    double rightSpeed = -m_controller.getRightY();
+    forwardSpeed = -m_controller.getWSAxis();
+    turnSpeed = -m_controller.getADAxis();
     
     // Setting the motor speeds using our joystick values
-    m_leftMotor.set(leftSpeed);
-    m_rightMotor.set(rightSpeed);
-    
-    // When testing code, only use one of the options below
-    // Option 1 - single if-else statement
-    if (m_controller.getAButton()) {
-      m_servo.setPosition(1.0);
-    } else {
-      m_servo.setPosition(0.0);
-    }
-    
-    // Option 2 - two separate if-statements
-    if (m_controller.getAButtonPressed()) {
-      m_servo.setPosition(1.0);
-    }
-    
-    if (m_controller.getAButtonReleased()) {
-      m_servo.setPosition(0.0);
-    }
+    m_leftMotor.set(forwardSpeed - turnSpeed);
+    m_rightMotor.set(forwardSpeed + turnSpeed);
   }
 }
 ```
@@ -81,27 +64,7 @@ public class Robot extends TimedRobot {
 {% endtab %}
 {% endtabs %}
 
-## Importing Classes
-
-Import the `XRPServo` class into your project so that you can use it in your code.
-
-{% tabs %}
-{% tab title="Java" %}
-```java
-import edu.wpi.first.wpilibj.xrp.XRPServo;
-```
-{% endtab %}
-
-{% tab title="C++ (Header)" %}
-```cpp
-// You only need to include the one you use
-#include <frc/PS4Controller.h>
-#include <frc/XboxController.h>
-```
-{% endtab %}
-{% endtabs %}
-
-## Controller Buttons
+## Programming the Servo
 
 Here are the steps we will take to control the servo:
 
@@ -113,19 +76,14 @@ Here are the steps we will take to control the servo:
 
 Create a variable for the `XRPServo` , and name it `m_servo`.  Use the constructor to set it to port 4 ([WPILib Getting to know your XRP](https://docs.wpilib.org/en/stable/docs/xrp-robot/getting-to-know-xrp.html)).
 
-The constructor for the `XRPServo` is `XRPServo(#)`, where `#` denotes the port.
+<table><thead><tr><th width="237">Constructor</th><th>Description</th></tr></thead><tbody><tr><td><code>XRPServo(int deviceNum)</code></td><td>The constructor.  Creates a Servo with the given device number.  The input <code>deviceNum</code> must be an integer.  For the XRP, the two device numbers for servos are 4 and 5.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Java" %}
 {% code title="Robot.java" lineNumbers="true" %}
 ```java
-package frc.robot;
-
-import edu.wpi.first.wpilibj.xrp.XRPServo;   // XRPServo
-// other imports not shown
-
 public class Robot extends TimedRobot {
-  XRPServo m_servo = new XRPServo(4);  // creating the servo
+  private final XRPServo m_servo = new XRPServo(4);  // creating the servo
   // other code not shown
 }
 ```
@@ -141,10 +99,9 @@ public class Robot extends TimedRobot {
 
 A servo position can be measured in either degrees (from 0 to 180 degrees) or as a "raw position" from 0 to 1.  Note that because of the ranges, a position of 90 degrees (or 0.5) is the middle position.
 
-* `setAngle(#)` - Sets the servo to the given angle of `#`.  The input is a decimal number (`double`) between `0.0` and `180.0` degrees.
-* `setPosition(#)` - Sets the servo to the given position of `#`, where `#` is a `double` between `0.0` and `1.0`.
-
 We will initialize the servo to 90 degrees (or a raw position of 0.5).
+
+<table><thead><tr><th width="277">Function</th><th>Description</th></tr></thead><tbody><tr><td><code>setAngle(double angle)</code></td><td>Commands the servo to move to the given position in degrees.  The input angle must be a decimal number (<code>double</code>) between <code>0.0</code> and <code>180.0</code>.</td></tr><tr><td><code>setPosition(double position)</code></td><td>Commands the servo to move to the given position.  The input position must be a decimal number (<code>double</code>) between <code>0.0</code> and <code>1.0</code>.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Java" %}
@@ -186,17 +143,13 @@ There are three "kinds" of if-statements that you will generally see in FRC code
 
 ### Using the Servo
 
-Depending on how you'd like to program the behavior of your robot, you can use any of the following functions of the `XBoxController`:
-
-* `getAButton()` - Evaluates to `true` as long as the button is pressed.  Holding down the button makes this function continue to be `true`.
-* `getAButtonPressed()` - Evaluates to `true` exactly one time when the button is initially pressed.  This function will not evaluate to `true` again until the button is pressed again.  In other words, holding down the button will not make this function continue to be `true`.
-* `getAButtonReleased()` - Evaluates to `true` exactly one time when it detects that the button has been released from a pressed state.
+Depending on how you'd like to program the behavior of your robot, you can use any of the following functions of the `KeyboardController`:
 
 {% hint style="info" %}
-Feel free to use other buttons, and not just the A-button.  The function names are all the same, with "A" being replaced by B, X, Y, etc.\
-\
-For PlayStation controllers, you can use Square, Cross, Triangle, and Circle.  For example, `getCircleButtonPressed()`.
+Replace the "Z" with "X", "C", or "V" to use the other buttons for the `KeyboardController`.
 {% endhint %}
+
+<table><thead><tr><th width="207">Function</th><th>Description</th></tr></thead><tbody><tr><td><code>getZButton()</code></td><td>Evaluates to <code>true</code> as long as the button is pressed.  Holding down the button makes this function continue to be <code>true</code>.</td></tr><tr><td><code>getZButtonPressed()</code></td><td>Evaluates to <code>true</code> exactly one time when the button is initially pressed.  This function will not evaluate to <code>true</code> again until the button is pressed again.  In other words, holding down the button will not make this function continue to be <code>true</code>.</td></tr><tr><td><code>getZButtonReleased()</code></td><td>Evaluates to <code>true</code> exactly one time when it detects that the button has been released from a pressed state.</td></tr></tbody></table>
 
 {% tabs %}
 {% tab title="Java" %}
@@ -206,7 +159,7 @@ For PlayStation controllers, you can use Square, Cross, Triangle, and Circle.  F
 
 @Override
 public void teleopPeriodic() {
-    if (m_controller.getAButtonPressed()) {
+    if (m_controller.getZButtonPressed()) {
         m_servo.setPosition(1.0);
     } else if (m_controller.getAButtonReleased()) {
         m_servo.setPosition(0.5);
@@ -223,63 +176,69 @@ public void teleopPeriodic() {
 
 ### Simulating Robot Code
 
-Connect to your XRP and simulate the code to test it.  The motors should be controlled by the joysticks, and the servo arm should "wave" when you press and release the A-button.
+Simulate the code to test it on the XRP (see the instructions in [Driving the XRP](../xrp-level-0-new-to-programming/driving-the-xrp.md) or in [Running Code on an XRP)](../running-code-on-an-xrp.md).
 
 ***
 
 ## Extension
 
-The code above shows only one way to get the servo arm to wave.  Can you modify your code so that it uses two if-statements instead?  What about a single if-else statement?
+* **Challenge A -** The code above shows only one way to get the servo arm to wave.  Can you modify your code so that it uses two if-statements instead?  What about a single if-else statement?
+* **Challenge B -** Attach and program a second servo to your robot.
 
 {% tabs %}
 {% tab title="Java" %}
 {% code lineNumbers="true" expandable="true" %}
 ```java
+// Sample for Challenge A
+
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.xrp.XRPMotor;   // XRPMotor
-import edu.wpi.first.wpilibj.xrp.XRPServo;
-import edu.wpi.first.wpilibj.XboxController; // XboxController
+
+import frc.robot.util.KeyboardController;
+import edu.wpi.first.wpilibj.xrp.*;
 
 public class Robot extends TimedRobot {
+  private final KeyboardController m_controller = new KeyboardController(0);
+  private final XRPMotor m_leftMotor = new XRPMotor(0);
+  private final XRPMotor m_rightMotor = new XRPMotor(1);
+  private final XRPServo m_servo = new XRPServo(4);
   
-  // Creating our controller and motor objects
-  XboxController m_controller = new XboxController(0);
-  XRPMotor m_leftMotor = new XRPMotor(0);
-  XRPMotor m_rightMotor = new XRPMotor(1);
-  XRPServo m_servo = new XRPServo(4);
+  private double fwd;
+  private double turn;
+
+  public Robot() {
+    m_rightMotor.setInverted(true);
+  }    
 
   @Override
   public void teleopInit() {
-    m_rightMotor.setInverted(true);
     m_servo.setPosition(0.5);
   }
 
   @Override
   public void teleopPeriodic() {
-    // Getting the values from the joysticks    
-    double leftSpeed = -m_controller.getLeftY();
-    double rightSpeed = -m_controller.getRightY();
+    fwd = -m_controller.getWSAxis();
+    turn = -m_controller.getADAxis();
     
     // Setting the motor speeds using our joystick values
-    m_leftMotor.set(leftSpeed);
-    m_rightMotor.set(rightSpeed);
+    m_leftMotor.set(fwd - turn);
+    m_rightMotor.set(fwd + turn);
     
     // When testing code, only use one of the options below
     // Option 1 - single if-else statement
-    if (m_controller.getAButton()) {
+    if (m_controller.getZButton()) {
       m_servo.setPosition(1.0);
     } else {
       m_servo.setPosition(0.0);
     }
     
     // Option 2 - two separate if-statements
-    if (m_controller.getAButtonPressed()) {
+    if (m_controller.getZButtonPressed()) {
       m_servo.setPosition(1.0);
     }
     
-    if (m_controller.getAButtonReleased()) {
+    if (m_controller.getZButtonReleased()) {
       m_servo.setPosition(0.0);
     }
   }
